@@ -26,7 +26,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 // If deployed, use the deployed database. Otherwise use the local newsScraper database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/DnTn_db";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/DnTn_DB";
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 // Connect to the Mongo DB
