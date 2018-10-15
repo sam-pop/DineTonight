@@ -1,4 +1,4 @@
-# DineTonight
+# [WIP] DineTonight
 
 Since my wife can never decide where to go out to eat - I'm building a MERN app that picks a highly rated (pseudo)random restaurant within a selected range (with the option to specify a cuisine).
 
