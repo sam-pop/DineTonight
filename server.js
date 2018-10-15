@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Routes (API and view)
 // require('./routes/api_routes')(app);
-app.use(routes);
+// app.use(routes);
 
 // Connect to the Mongo DB
 // If deployed, use the deployed database. Otherwise use the local newsScraper database
