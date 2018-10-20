@@ -11,7 +11,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve up static assets (usually on heroku)
+// Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   const path = require("path");
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 // app.use(routes);
 
 // Connect to the Mongo DB
-// If deployed, use the deployed database. Otherwise use the local newsScraper database
+// If deployed, use the deployed database. Otherwise use the local database
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/DnTn_DB";
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
