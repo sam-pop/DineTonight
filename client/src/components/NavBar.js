@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-class Navbar extends Component {
+class NavBar extends Component {
   render() {
     return (
-      <div>
+      <div >
         <nav className="navbar">
           <div className="navbar-brand">
             <a className="navbar-item  navbar-start">logo-will-come-here</a>
@@ -28,4 +28,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default NavBar;
