@@ -10,13 +10,24 @@ h1 {
   color: #242038;
 }
 
+/* nav items */
 .navbar, .navbar-item {
   background-color: #242038;
   color: #cac4ce;
 }
-
 .navbar-item:hover {
   background-color: #f7ece1 !important;
   color: #242038 !important;
   border-radius: 5px 5px 0 0;
+  box-shadow: 0px 2px 5px #242038;
+}
+
+/* nav logo */
+.navbar-brand {
+  font-size: 1.5em;
+}
+.navbar-brand :hover {
+  background-color: #242038 !important;
+  color: #cac4ce !important;
+  box-shadow: 0px 0px 0px !important;
 }

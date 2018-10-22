@@ -6,7 +6,7 @@ class NavBar extends Component {
       <div >
         <nav className="navbar">
           <div className="navbar-brand">
-            <a className="navbar-item  navbar-start">logo-will-come-here</a>
+            <a className="navbar-item navbar-start">DinnerTonight!</a>
             <a className="navbar-burger" data-target="navMenu">
               <span />
               <span />
