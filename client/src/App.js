@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <h1>Welcome to DinnerTonight!</h1>
+        <h1>Looking for a place to eat?</h1>
       </div>
     );
   }
