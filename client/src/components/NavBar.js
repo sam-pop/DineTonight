@@ -16,7 +16,6 @@ class NavBar extends Component {
 
           <div className="navbar-menu navbar-end" id="navMenu">
             <a className="navbar-item">About</a>
-              {/* <i className="fab fa-github" style={{ "font-size": "2rem" }} /> */}
             <a className="navbar-item"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
           </div>
         </nav>
