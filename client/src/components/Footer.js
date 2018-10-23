@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 
+const styles = {
+  gh_icon: {
+    fontSize: "1.5rem",
+    color: "#242038"
+  }
+};
+
 class Footer extends Component {
   render() {
     return (
       <footer>
-        <div class="has-text-centered">
-          <p>
-            <i className="fab fa-github" style={{ "font-size": "1.5rem" }} />
-          </p>
+        <div className="has-text-centered">
+          <a href="https://github.com/sam-pop/DnTn" target="_blank">
+            <i className="fab fa-github" style={styles.gh_icon} />
+          </a>
         </div>
       </footer>
     );

@@ -5,6 +5,12 @@ import Footer from "./components/Footer";
 import DiceButton from "./components/DiceButton";
 import "./App.css";
 
+const styles = {
+  container: {
+    marginTop: "2%"
+  }
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +23,7 @@ class App extends Component {
         <NavBar />
         <h1>Looking for a place to eat?</h1>
         <h2>Don't "roll the dice" on a restuarant... let us do it for you!</h2>
-        <section className="container" style={{ "margin-top": "2%" }}>
+        <section className="container" style={styles.container}>
           <div className="has-text-left">
             We can show you a <u>top-rating</u> restuarnt near your current
             location with a simple click of a button.

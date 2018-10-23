@@ -6,7 +6,11 @@ const randDiceIcon = () => {
   const randInd = Math.floor(Math.random() * diceArray.length);
   return `${baseName}${diceArray[randInd]}`;
 };
-
+const styles = {
+  button: {
+    fontSize: "2.5rem"
+  }
+};
 class DiceButton extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +23,12 @@ class DiceButton extends Component {
     };
     return (
       <button className="button randomBtn">
-        <i className={this.props.default=="true" ? "fas fa-dice" : getRandIcon()} style={{ "font-size": "2rem" }} />
+        <i
+          className={
+            this.props.default == "true" ? "fas fa-dice" : getRandIcon()
+          }
+          style={styles.button}
+        />
       </button>
     );
   }
