@@ -16,15 +16,17 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {baseIconName: "fas fa-dice"};
-  }
-
-
+    this.state = {baseIconName: "fas fa-dice",
+    icon: "<i className={getCurrentIcon()} style={{ 'font-size': '2rem' }}  />"
+  };
 
   render() {
 
+      const getCurrentIcon = () => {
+        return this.state.icon;
+      }
       const handleMouseEnter = () => {
-        this.setState({baseIconName : randDiceIcon()});
+        this.setState({icon : randDiceIcon()});
       }
 
     return (
@@ -40,15 +42,17 @@ class App extends Component {
           <div className="has-text-right">text</div>
         </section>
         <div className="has-text-centered">
-          <button className="button randomBtn" onMouseEnter={this.handleMouseEnter}>
-            <i className={this.state.baseIconName} style={{ "font-size": "2rem" }} />
+          <button className="button randomBtn" onMouseEnter={function () {
+            return handleMouseEnter();
+          }}>
+          {this.state.icon}
+            // <i className={getCurrentIcon()} style={{ "font-size": "2rem" }}  />
           </button>
         </div>
         <Footer />
       </div>
     );
   }
-
 }
 
 export default App;
