@@ -40,8 +40,8 @@ class App extends Component {
           <div className="has-text-right">text</div>
         </section>
         <div className="has-text-centered">
-          <button className="button randomBtn">
-            <i className={this.state.baseIconName} onMouseEnter={this.handleMouseEnter} style={{ "font-size": "2rem" }} />
+          <button className="button randomBtn" onMouseEnter={this.handleMouseEnter}>
+            <i className={this.state.baseIconName} style={{ "font-size": "2rem" }} />
           </button>
         </div>
         <Footer />
