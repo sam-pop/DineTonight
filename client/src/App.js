@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
+import DiceButton from "./components/DiceButton";
 import "./App.css";
-
-const randDiceIcon = () => {
-  const baseName = "fas fa-dice";
-  const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
-  const randInd = Math.floor(Math.random() * diceArray.length);
-  return `${baseName}${diceArray[randInd]}`;
-};
 
 class App extends Component {
   constructor(props) {
@@ -18,11 +12,6 @@ class App extends Component {
   }
 
   render() {
-
-    const getRandIcon = () => {
-      return randDiceIcon();
-    };
-
     return (
       <div className="App">
         <NavBar />
@@ -36,9 +25,7 @@ class App extends Component {
           <div className="has-text-right">text</div>
         </section>
         <div className="has-text-centered">
-          <button className="button randomBtn">
-            <i className={getRandIcon()} style={{ "font-size": "2rem" }} />
-          </button>
+          <DiceButton default="true"/>
         </div>
         <Footer />
       </div>
