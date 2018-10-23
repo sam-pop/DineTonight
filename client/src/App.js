@@ -8,7 +8,7 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { firstRun: true };
   }
 
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
           <div className="has-text-right">text</div>
         </section>
         <div className="has-text-centered">
-          <DiceButton default="true"/>
+          {this.state.firstRun ? <DiceButton default="true" /> : <DiceButton />}
         </div>
         <Footer />
       </div>
