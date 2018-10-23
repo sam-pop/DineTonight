@@ -1,33 +1,27 @@
 import React, { Component } from "react";
-import "./App.css";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
+import "./App.css";
 
 const randDiceIcon = () => {
   const baseName = "fas fa-dice";
-  const diceArray = ["one", "two", "three", "four", "five", "six"];
+  const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
   const randInd = Math.floor(Math.random() * diceArray.length);
-  return `${baseName}-${diceArray[randInd]}`;
+  return `${baseName}${diceArray[randInd]}`;
 };
 
-
 class App extends Component {
-
   constructor(props) {
     super(props);
-    this.state = {baseIconName: "fas fa-dice",
-    icon: "<i className={getCurrentIcon()} style={{ 'font-size': '2rem' }}  />"
-  };
+    this.state = {};
+  }
 
   render() {
 
-      const getCurrentIcon = () => {
-        return this.state.icon;
-      }
-      const handleMouseEnter = () => {
-        this.setState({icon : randDiceIcon()});
-      }
+    const getRandIcon = () => {
+      return randDiceIcon();
+    };
 
     return (
       <div className="App">
@@ -42,11 +36,8 @@ class App extends Component {
           <div className="has-text-right">text</div>
         </section>
         <div className="has-text-centered">
-          <button className="button randomBtn" onMouseEnter={function () {
-            return handleMouseEnter();
-          }}>
-          {this.state.icon}
-            // <i className={getCurrentIcon()} style={{ "font-size": "2rem" }}  />
+          <button className="button randomBtn">
+            <i className={getRandIcon()} style={{ "font-size": "2rem" }} />
           </button>
         </div>
         <Footer />
