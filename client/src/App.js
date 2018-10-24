@@ -14,7 +14,11 @@ const styles = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { firstRun: true };
+    this.state = {
+      firstRun: true,
+      loggedIn: {},
+      currentLocation: { lat: 0, lon: 0 }
+    };
   }
 
   render() {
@@ -24,11 +28,16 @@ class App extends Component {
         <h1>Looking for a place to eat?</h1>
         <h2>Don't "roll the dice" on a restuarant... let us do it for you!</h2>
         <section className="container" style={styles.container}>
-          <div className="has-text-left"><br/>
+          <div className="has-text-left">
+            <br />
             We can show you a <u>top-rating</u> restuarnt near your current
             location with a simple click of a button!
           </div>{" "}
-          <div className="has-text-right"><br/>So why won't you let us make the tough decisions, leaving you with more time to relax.</div>
+          <div className="has-text-right">
+            <br />
+            So why won't you let us make the tough decisions, leaving you with
+            more time to relax.
+          </div>
         </section>
         <div className="has-text-centered">
           {this.state.firstRun ? <DiceButton default="true" /> : <DiceButton />}
