@@ -22,6 +22,30 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.getGeolocation();
+  }
+
+  getGeolocation = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        // console.log(position.coords.latitude, position.coords.longitude);
+        this.setState({
+          currentLocation: {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          }
+        });
+      });
+    } else {
+      console.log("Unable to access current location...");
+    }
+  };
+
+  changeFirstRun = () => {
+    this.setState({ firstRun: false });
+  };
+
   render() {
     return (
       <div className="App">
@@ -41,7 +65,14 @@ class App extends Component {
           </div>
         </section>
         <div className="has-text-centered">
-          {this.state.firstRun ? <DiceButton default="true" /> : <DiceButton />}
+          {this.state.firstRun ? (
+            <DiceButton
+              default="true"
+              changeFirstRun={this.changeFirstRun.bind(this)}
+            />
+          ) : (
+            <DiceButton />
+          )}
         </div>
         <Footer />
       </div>

@@ -12,7 +12,11 @@ class Footer extends Component {
     return (
       <footer>
         <div className="has-text-centered">
-          <a href="https://github.com/sam-pop/DnTn" target="_blank">
+          <a
+            href="https://github.com/sam-pop/DnTn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-github" style={styles.gh_icon} />
           </a>
         </div>

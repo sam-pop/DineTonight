@@ -22,10 +22,10 @@ class DiceButton extends Component {
       return randDiceIcon();
     };
     return (
-      <button className="button randomBtn">
+      <button className="button randomBtn" onClick={this.props.changeFirstRun}>
         <i
           className={
-            this.props.default == "true" ? "fas fa-dice" : getRandIcon()
+            this.props.default === "true" ? "fas fa-dice" : getRandIcon()
           }
           style={styles.button}
         />
