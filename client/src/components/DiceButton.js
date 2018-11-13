@@ -14,15 +14,29 @@ const styles = {
 class DiceButton extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentLocation: this.props.currentLocation
+    };
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ currentLocation: nextProps.currentLocation });
+  }
+
+  handleButtonClick = () => {
+    if (this.state.currentLocation === null) console.log("this is null!");
+    else console.log("this is NOT null!");
+  };
 
   render() {
     const getRandIcon = () => {
       return randDiceIcon();
     };
     return (
-      <button className="button randomBtn" onClick={this.props.changeFirstRun}>
+      <button
+        className="button randomBtn"
+        onClick={this.props.changeFirstRun && this.handleButtonClick}
+      >
         <i
           className={
             this.props.default === "true" ? "fas fa-dice" : getRandIcon()
