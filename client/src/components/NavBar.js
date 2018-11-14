@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 
 class NavBar extends Component {
+  handleBrandClick = () => {
+    window.location.reload();
+  };
+
   render() {
     return (
       <div>
         <nav className="navbar">
-          <div className="navbar-brand">
+          <div className="navbar-brand" onClick={this.handleBrandClick}>
             <a className="navbar-item navbar-start">Dine🥂Tonight!</a>
             <a className="navbar-burger" data-target="navMenu">
               <span />

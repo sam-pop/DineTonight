@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
@@ -24,15 +25,14 @@ class App extends Component {
   }
 
   handleClick = () => {
-    if (this.state.currentLocation !== null)
+    if (this.state.currentLocation !== null) {
       this.setState({ currentContainer: <ResultContainer test="cool" /> });
-    else alert("Current location not found! Please enable location services");
+    } else alert("Current location not found! Please enable location services");
   };
 
   getGeolocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
-        // console.log(position.coords.latitude, position.coords.longitude);
         this.setState({
           currentLocation: {
             lat: position.coords.latitude,

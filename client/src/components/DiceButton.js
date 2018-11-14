@@ -1,18 +1,6 @@
 import React, { Component } from "react";
 import WelcomeContainer from "./WelcomeContainer";
-import axios from "axios";
 
-const randDiceIcon = () => {
-  const baseName = "fas fa-dice";
-  const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
-  const randInd = Math.floor(Math.random() * diceArray.length);
-  return `${baseName}${diceArray[randInd]}`;
-};
-const styles = {
-  button: {
-    fontSize: "2.5rem"
-  }
-};
 class DiceButton extends Component {
   constructor(props) {
     super(props);
@@ -34,15 +22,24 @@ class DiceButton extends Component {
     }
   };
 
+  randDiceIcon = () => {
+    const baseName = "fas fa-dice";
+    const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
+    const randInd = Math.floor(Math.random() * diceArray.length);
+    return `${baseName}${diceArray[randInd]}`;
+  };
+
   render() {
-    const getRandIcon = () => {
-      return randDiceIcon();
+    const styles = {
+      button: {
+        fontSize: "2.5rem"
+      }
     };
     return (
       <button className="button randomBtn" onClick={this.handleButtonClick}>
         <i
           className={
-            this.state.firstRun === true ? "fas fa-dice" : getRandIcon()
+            this.state.firstRun === true ? "fas fa-dice" : this.randDiceIcon()
           }
           style={styles.button}
         />
