@@ -23,6 +23,10 @@ class App extends Component {
     this.getGeolocation();
   }
 
+  handleClick = () => {
+    this.setState({ currentContainer: <ResultContainer /> });
+  };
+
   getGeolocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -47,18 +51,19 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        {/* <WelcomeContainer /> */}
         {this.state.currentContainer}
         <div className="has-text-centered">
-          {this.state.firstRun ? (
-            <DiceButton
-              default="true"
-              changeFirstRun={this.changeFirstRun.bind(this)}
-              currentLocation={this.state.currentLocation}
-            />
-          ) : (
-            <DiceButton />
-          )}
+          <span onClick={this.handleClick}>
+            {this.state.firstRun ? (
+              <DiceButton
+                changeFirstRun={this.changeFirstRun.bind(this)}
+                currentLocation={this.state.currentLocation}
+                firstRun={this.state.firstRun}
+              />
+            ) : (
+              <DiceButton firstRun={this.state.firstRun} />
+            )}
+          </span>
         </div>
         <Footer />
       </div>

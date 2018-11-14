@@ -6,12 +6,12 @@ const { ZOMATO_API } = require("../../keys.js");
 // Matches with "/api/restaurants"
 router.route("/").get((req, res) => {
   // FOR TESTING
-  // let lat = "38.909563";
-  // let lon = "-77.023681";
+  let lat = "38.909563";
+  let lon = "-77.023681";
 
   // Current location is passed through the req
-  let lat = req.latlon.lat;
-  let lon = req.latlon.lon;
+  // let lat = req.latlon.lat;
+  // let lon = req.latlon.lon;
 
   const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
   request(

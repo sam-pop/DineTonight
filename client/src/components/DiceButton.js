@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import WelcomeContainer from "./WelcomeContainer";
+import axios from "axios";
 
 const randDiceIcon = () => {
   const baseName = "fas fa-dice";
@@ -15,17 +17,25 @@ class DiceButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLocation: this.props.currentLocation
+      currentLocation: this.props.currentLocation,
+      firstRun: this.props.firstRun
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ currentLocation: nextProps.currentLocation });
+    this.setState({ firstRun: nextProps.firstRun });
   }
 
-  handleButtonClick = () => {
-    if (this.state.currentLocation === null) console.log("this is null!");
-    else console.log("this is NOT null!");
+  handleButtonClick = event => {
+    if (this.state.currentLocation !== null) {
+      if (this.props.firstRun) {
+        this.props.changeFirstRun();
+        console.log("yayy");
+      } else {
+        console.log("nayyy");
+      }
+    }
   };
 
   render() {
@@ -33,13 +43,10 @@ class DiceButton extends Component {
       return randDiceIcon();
     };
     return (
-      <button
-        className="button randomBtn"
-        onClick={this.props.changeFirstRun && this.handleButtonClick}
-      >
+      <button className="button randomBtn" onClick={this.handleButtonClick}>
         <i
           className={
-            this.props.default === "true" ? "fas fa-dice" : getRandIcon()
+            this.state.firstRun === true ? "fas fa-dice" : getRandIcon()
           }
           style={styles.button}
         />
