@@ -15,7 +15,7 @@ class DiceButton extends Component {
 
   randDiceIcon = () => {
     const baseName = "fas fa-dice";
-    const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
+    const diceArray = ["-one", "-two", "-three", "-four", "-five", "-six"];
     const randInd = Math.floor(Math.random() * diceArray.length);
     return `${baseName}${diceArray[randInd]}`;
   };

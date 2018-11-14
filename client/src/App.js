@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
+import API from "./utils/API";
 import "./App.css";
 
 class App extends Component {
@@ -13,7 +14,9 @@ class App extends Component {
     firstRun: true,
     loggedIn: null,
     currentLocation: null,
-    currentContainer: <WelcomeContainer />
+    currentContainer: <WelcomeContainer />,
+    results: null,
+    message: ""
   };
 
   componentDidMount() {
@@ -22,17 +25,25 @@ class App extends Component {
 
   handleClick = () => {
     if (this.state.currentLocation !== null) {
-      if (this.state.firstRun) this.setState({ firstRun: false });
-      this.setState({
-        currentContainer: <ResultContainer result={this.randResult()} />
-      });
+      this.getResultsFromAPI();
+      this.setState({ message: "Calculating best-matches..." });
+      setTimeout(() => {
+        if (this.state.firstRun) {
+          this.setState({ firstRun: false });
+          if (this.state.results)
+            this.setState({
+              currentContainer: <ResultContainer results={this.state.results} />
+            });
+        }
+      }, 3000);
     } else alert("Current location not found! Please enable location services");
   };
 
-  randResult = () => {
-    return Math.random();
+  getResultsFromAPI = () => {
+    API.getResults(this.state.currentLocation).then(res =>
+      this.setState({ results: res.data.nearby_restaurants })
+    );
   };
-
   getGeolocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -59,8 +70,21 @@ class App extends Component {
         {this.state.currentContainer}
         <div className="has-text-centered">
           <span onClick={this.handleClick}>
-            <DiceButton firstRun={this.state.firstRun} />
+            {this.state.firstRun ? (
+              <DiceButton firstRun={this.state.firstRun} />
+            ) : (
+              ""
+            )}
           </span>
+        </div>
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "1.1em",
+            color: "darkred"
+          }}
+        >
+          {this.state.message}
         </div>
         <Footer />
       </div>
