@@ -7,27 +7,37 @@ class ResultContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      results: this.props.results,
-      firstRun: false
+      results: this.props.results
     };
+  }
+
+  componentDidMount() {
+    const tempRes = this.randResult(this.state.results);
+    this.setState({ tempRes });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ results: nextProps.results });
   }
 
+  randResult = arr => {
+    const randInd = Math.floor(arr.length * Math.random());
+    return arr[randInd];
+  };
+
   handleClick = () => {
-    this.setState({ firstRun: false });
+    const tempRes = this.randResult(this.state.results);
+    this.setState({ tempRes });
     console.log("this been clicked");
   };
 
   render() {
     return (
       <div>
-        <ResultCard results={this.props.results} />
+        <ResultCard currentResult={this.state.tempRes} />
         <div className="has-text-centered">
           <span onClick={this.handleClick}>
-            <DiceButton firstRun={this.state.firstRun} />
+            <DiceButton firstRun={false} />
           </span>
         </div>
       </div>

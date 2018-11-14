@@ -5,12 +5,12 @@ class ResultCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: this.props.result
+      currentResult: this.props.currentResult
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ result: nextProps.result });
+    this.setState({ result: nextProps.currentResult });
   }
 
   render() {
@@ -21,7 +21,6 @@ class ResultCard extends React.Component {
       >
         <div className="card-content">
           <p className="title">
-            {this.props.result}
             <br />
             “There are two hard things in computer science: cache invalidation,
             naming things, and off-by-one errors.”

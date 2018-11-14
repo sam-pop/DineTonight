@@ -16,7 +16,7 @@ class App extends Component {
     currentLocation: null,
     currentContainer: <WelcomeContainer />,
     results: null,
-    message: ""
+    message: "Roll the dice to begin"
   };
 
   componentDidMount() {
@@ -30,10 +30,12 @@ class App extends Component {
       setTimeout(() => {
         if (this.state.firstRun) {
           this.setState({ firstRun: false });
-          if (this.state.results)
+          if (this.state.results) {
+            this.setState({ message: "" });
             this.setState({
               currentContainer: <ResultContainer results={this.state.results} />
             });
+          }
         }
       }, 3000);
     } else alert("Current location not found! Please enable location services");
