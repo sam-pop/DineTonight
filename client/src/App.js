@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
@@ -10,15 +9,12 @@ import ResultContainer from "./components/ResultContainer";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstRun: true,
-      loggedIn: {},
-      currentLocation: null,
-      currentContainer: <WelcomeContainer />
-    };
-  }
+  state = {
+    firstRun: true,
+    loggedIn: null,
+    currentLocation: null,
+    currentContainer: <WelcomeContainer />
+  };
 
   componentDidMount() {
     this.getGeolocation();
@@ -26,6 +22,7 @@ class App extends Component {
 
   handleClick = () => {
     if (this.state.currentLocation !== null) {
+      if (this.state.firstRun) this.setState({ firstRun: false });
       this.setState({ currentContainer: <ResultContainer test="cool" /> });
     } else alert("Current location not found! Please enable location services");
   };
@@ -56,11 +53,7 @@ class App extends Component {
         {this.state.currentContainer}
         <div className="has-text-centered">
           <span onClick={this.handleClick}>
-            <DiceButton
-              changeFirstRun={this.changeFirstRun.bind(this)}
-              currentLocation={this.state.currentLocation}
-              firstRun={this.state.firstRun}
-            />
+            <DiceButton firstRun={this.state.firstRun} />
           </span>
         </div>
         <Footer />

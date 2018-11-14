@@ -13,15 +13,6 @@ class DiceButton extends Component {
     this.setState({ firstRun: nextProps.firstRun });
   }
 
-  handleButtonClick = event => {
-    if (this.props.firstRun) {
-      this.props.changeFirstRun();
-      console.log("yayy");
-    } else {
-      console.log("nayyy");
-    }
-  };
-
   randDiceIcon = () => {
     const baseName = "fas fa-dice";
     const diceArray = ["", "-one", "-two", "-three", "-four", "-five", "-six"];
@@ -36,7 +27,7 @@ class DiceButton extends Component {
       }
     };
     return (
-      <button className="button randomBtn" onClick={this.handleButtonClick}>
+      <button className="button randomBtn">
         <i
           className={
             this.state.firstRun === true ? "fas fa-dice" : this.randDiceIcon()
