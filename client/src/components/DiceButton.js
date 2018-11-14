@@ -17,24 +17,20 @@ class DiceButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLocation: this.props.currentLocation,
       firstRun: this.props.firstRun
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ currentLocation: nextProps.currentLocation });
     this.setState({ firstRun: nextProps.firstRun });
   }
 
   handleButtonClick = event => {
-    if (this.state.currentLocation !== null) {
-      if (this.props.firstRun) {
-        this.props.changeFirstRun();
-        console.log("yayy");
-      } else {
-        console.log("nayyy");
-      }
+    if (this.props.firstRun) {
+      this.props.changeFirstRun();
+      console.log("yayy");
+    } else {
+      console.log("nayyy");
     }
   };
 

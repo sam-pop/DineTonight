@@ -24,7 +24,9 @@ class App extends Component {
   }
 
   handleClick = () => {
-    this.setState({ currentContainer: <ResultContainer /> });
+    if (this.state.currentLocation !== null)
+      this.setState({ currentContainer: <ResultContainer test="cool" /> });
+    else alert("Current location not found! Please enable location services");
   };
 
   getGeolocation = () => {
@@ -54,15 +56,11 @@ class App extends Component {
         {this.state.currentContainer}
         <div className="has-text-centered">
           <span onClick={this.handleClick}>
-            {this.state.firstRun ? (
-              <DiceButton
-                changeFirstRun={this.changeFirstRun.bind(this)}
-                currentLocation={this.state.currentLocation}
-                firstRun={this.state.firstRun}
-              />
-            ) : (
-              <DiceButton firstRun={this.state.firstRun} />
-            )}
+            <DiceButton
+              changeFirstRun={this.changeFirstRun.bind(this)}
+              currentLocation={this.state.currentLocation}
+              firstRun={this.state.firstRun}
+            />
           </span>
         </div>
         <Footer />
