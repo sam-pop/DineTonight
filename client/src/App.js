@@ -23,8 +23,14 @@ class App extends Component {
   handleClick = () => {
     if (this.state.currentLocation !== null) {
       if (this.state.firstRun) this.setState({ firstRun: false });
-      this.setState({ currentContainer: <ResultContainer test="cool" /> });
+      this.setState({
+        currentContainer: <ResultContainer result={this.randResult()} />
+      });
     } else alert("Current location not found! Please enable location services");
+  };
+
+  randResult = () => {
+    return Math.random();
   };
 
   getGeolocation = () => {
