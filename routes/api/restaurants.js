@@ -11,7 +11,7 @@ router.route("/").post((req, res) => {
       let lat = parseFloat(req.body.lat);
       let lon = parseFloat(req.body.lon);
       //API call to Zomato with the current coordinates
-      const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
+      const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}&start=0&count=20`;
       request(
         {
           headers: {
