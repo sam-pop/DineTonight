@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Footer from "./Footer";
 
 const WelcomeContainer = props => {
   const styles = {
@@ -35,6 +36,7 @@ const WelcomeContainer = props => {
           more time to relax.
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

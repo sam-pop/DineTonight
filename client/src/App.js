@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
-import Footer from "./components/Footer";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
@@ -70,7 +69,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         {this.state.currentContainer}
-        <div className="has-text-centered">
+        <div className="has-text-centered animated pulse">
           <span onClick={this.handleClick}>
             {this.state.firstRun ? (
               <DiceButton firstRun={this.state.firstRun} />
@@ -80,6 +79,7 @@ class App extends Component {
           </span>
         </div>
         <div
+          className="animated pulse"
           style={{
             textAlign: "center",
             fontSize: "1.1em",
@@ -88,7 +88,6 @@ class App extends Component {
         >
           {this.state.message}
         </div>
-        <Footer />
       </div>
     );
   }

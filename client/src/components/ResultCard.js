@@ -60,7 +60,7 @@ class ResultCard extends React.Component {
         return {
           card: {
             width: "70%",
-            maxHeight: "50vh",
+            height: "45vh",
             margin: "0 auto",
             marginTop: "7%",
             textAlign: "center",

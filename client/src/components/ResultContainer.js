@@ -27,14 +27,13 @@ class ResultContainer extends React.Component {
   handleClick = () => {
     const tempRes = this.randResult(this.state.results);
     this.setState({ tempRes });
-    console.log("this been clicked");
   };
 
   render() {
     return (
-      <div>
+      <div className="animated fadeInDown">
         <ResultCard currentResult={this.state.tempRes} />
-        <div className="has-text-centered">
+        <div className="has-text-centered animated fadeIn">
           <span onClick={this.handleClick}>
             <DiceButton firstRun={false} />
           </span>
