@@ -11,7 +11,7 @@ class ResultContainer extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const tempRes = this.randResult(this.state.results);
     this.setState({ tempRes });
   }
