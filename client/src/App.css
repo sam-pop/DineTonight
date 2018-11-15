@@ -15,8 +15,12 @@ h2 {
 }
 
 .App {
-  height: 100vh;
-  background-color: #f7ece1;
+  background-image: url("./images/bg.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  /* background-color: #f7ece1; */
   color: #242038;
 }
 
@@ -28,7 +32,7 @@ h2 {
   font-family: sans-serif;
 }
 .navbar-item:hover {
-  background-color: #f7ece1 !important;
+  background-color: #cac4ce !important;
   color: #242038 !important;
   border-radius: 7px 0px 0 0;
 }
@@ -63,7 +67,6 @@ h2 {
     text-align: center;
     border-radius: 20px 20px;
   }
-
 }
 
 .randomBtn:hover {
