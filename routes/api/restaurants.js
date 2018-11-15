@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const resturantsController = require("../../controllers/resturantsController");
 const request = require("request");
-const { ZOMATO_API } = require("../../keys.js");
 
 // Matches with "/api/restaurants"
 router.route("/").post((req, res) => {
@@ -15,7 +14,7 @@ router.route("/").post((req, res) => {
       request(
         {
           headers: {
-            "user-key": ZOMATO_API
+            "user-key": process.env.ZOMATO_API
           },
           uri: zomatoURL
         },
