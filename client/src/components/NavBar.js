@@ -9,8 +9,13 @@ class NavBar extends Component {
     return (
       <div>
         <nav className="navbar">
-          <div className="navbar-brand" onClick={this.handleBrandClick}>
-            <a className="navbar-item navbar-start">Dine🥂Tonight!</a>
+          <div className="navbar-brand">
+            <a
+              className="navbar-item navbar-start"
+              onClick={this.handleBrandClick}
+            >
+              Dine🥂Tonight!
+            </a>
             <a className="navbar-burger" data-target="navMenu">
               <span />
               <span />

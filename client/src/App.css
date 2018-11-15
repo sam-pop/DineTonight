@@ -1,17 +1,18 @@
 * {
   font-family: "Playfair Display", serif;
+  font-size: 2vh;
 }
 
 h1 {
   padding-top: 5%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 4vh;
   font-weight: 700;
 }
 
 h2 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 3vh;
 }
 
 .App {

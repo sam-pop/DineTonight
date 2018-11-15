@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 const WelcomeContainer = props => {
@@ -6,10 +6,24 @@ const WelcomeContainer = props => {
     marginTop: "2%"
   };
 
+  const responsiveSubtitleText = {
+    smallScreen: (
+      <Fragment>
+        Don't "roll the dice" on a restuarant... <br /> let us do it for you!
+      </Fragment>
+    ),
+    largeScreen: `Don\'t "roll the dice" on a restuarant... let us do it for you!`
+  };
+
+  const responsiveSubtitle = () => {
+    if (window.innerWidth < 667) return responsiveSubtitleText.smallScreen;
+    else return responsiveSubtitleText.largeScreen;
+  };
+
   return (
     <div>
       <h1>Looking for a place to eat?</h1>
-      <h2>Don't "roll the dice" on a restuarant... let us do it for you!</h2>
+      <h2>{responsiveSubtitle()}</h2>
       <section className="container" style={styles}>
         <div className="has-text-left">
           <br />
