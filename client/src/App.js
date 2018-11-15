@@ -26,7 +26,7 @@ class App extends Component {
   handleClick = () => {
     if (this.state.currentLocation !== null) {
       this.getResultsFromAPI();
-      this.setState({ message: "Calculating best-matches..." });
+      this.setState({ message: "Calculating best-matches" });
       setTimeout(() => {
         if (this.state.firstRun) {
           this.setState({ firstRun: false });

@@ -1,4 +1,5 @@
 import React from "react";
+import "./ResultCard.css";
 
 class ResultCard extends React.Component {
   constructor(props) {
@@ -24,58 +25,124 @@ class ResultCard extends React.Component {
     const thisResult = this.props.currentResult.restaurant;
     const gmAddressLink =
       "https://maps.google.com/?q=" + thisResult.location.address;
-
-    const styles = {
-      card: {
-        width: "70%",
-        maxHeight: "50vh",
-        margin: "0 auto",
-        marginTop: "7%",
-        textAlign: "center",
-        boxShadow: "0px 5px 16px 2px rgba(171,171,171,1)"
-      },
-      subtitle: {
-        textAlign: "center",
-        margin: "0 auto"
-      },
-      imgContainer: {
-        margin: "0 auto",
-        width: "50%",
-        marginBottom: "10%"
-      }
+    const getStyles = () => {
+      //style for small screens
+      if (window.innerWidth < 667)
+        return {
+          card: {
+            width: "90%",
+            minHeight: "60vh",
+            maxHeight: "65vh",
+            margin: "0 auto",
+            marginTop: "5%",
+            textAlign: "center",
+            boxShadow: "0px 5px 16px 2px rgba(171,171,171,1)"
+          },
+          title: {
+            fontSize: "2vh"
+          },
+          subtitle: {
+            fontSize: "2.2vh",
+            textAlign: "center",
+            margin: "0 auto"
+          },
+          name: {
+            fontSize: "3vh"
+          },
+          imgContainer: {
+            margin: "0 auto",
+            width: "50%",
+            marginBottom: "10%"
+          }
+        };
+      //style sfor large screens
+      else
+        return {
+          card: {
+            width: "70%",
+            maxHeight: "50vh",
+            margin: "0 auto",
+            marginTop: "7%",
+            textAlign: "center",
+            boxShadow: "0px 5px 16px 2px rgba(171,171,171,1)"
+          },
+          title: {
+            fontSize: "2vh"
+          },
+          subtitle: {
+            fontSize: "2.2vh",
+            textAlign: "center",
+            margin: "0 auto"
+          },
+          name: {
+            fontSize: "3vh"
+          },
+          imgContainer: {
+            margin: "0 auto",
+            width: "50%",
+            marginBottom: "10%"
+          }
+        };
     };
 
     return (
-      <div className="card" style={styles.card}>
+      <div className="card" style={getStyles().card}>
         <div className="card-content">
-          <p className="title">
-            <u>{thisResult.name}</u>
-            <span style={{ fontSize: "0.6em" }}>
-              &nbsp;&nbsp;
-              <i>{thisResult.user_rating.aggregate_rating}</i> / 5 &nbsp;
-              <span style={{ fontSize: "0.7em" }}>
-                ({thisResult.user_rating.votes} votes)
-              </span>
+          <p className="title" style={getStyles().title}>
+            <span style={getStyles().name}>
+              <u>{thisResult.name}</u>
             </span>
             <br />
-            <span style={{ fontSize: "0.6em" }}>
+            <span
+              style={{
+                margin: "1%",
+                position: "absolute",
+                top: "0",
+                left: "0",
+                color: "#242038"
+              }}
+            >
               {this.renderDollarSigns(thisResult.price_range)}
-              &nbsp;-&nbsp;
-              {thisResult.cuisines}
+            </span>
+            <br />
+            <span
+              style={{
+                margin: "1%",
+                position: "absolute",
+                top: "0",
+                right: "0"
+              }}
+            >
+              {thisResult.user_rating.aggregate_rating > 4.0 ? (
+                <i style={{ color: "green" }}>
+                  {thisResult.user_rating.aggregate_rating}
+                </i>
+              ) : (
+                <i style={{ color: "red" }}>
+                  {thisResult.user_rating.aggregate_rating}
+                </i>
+              )}{" "}
+              / 5 &nbsp;
+              <span style={{ fontSize: "1.5vh", color: "lightgray" }}>
+                <br />({thisResult.user_rating.votes} votes)
+              </span>
+            </span>
+            <span>
+              <i>{thisResult.cuisines}</i>
             </span>
             <br />
           </p>
-          <p className="subtitle" style={styles.subtitle}>
-            {/* <div className="img-container" style={styles.imgContainer}> */}
+          <p className="subtitle" style={getStyles().subtitle}>
+            {/* <div className="img-container" style={getStyles().imgContainer}> */}
             {/* <img src={thisResult.featured_image} /> */}
             {/* </div> */}
             <br />
             <br />
-            <a href={gmAddressLink} target="_blank">
-              {thisResult.location.address}
+            <a href={gmAddressLink} target="_blank" rel="noopener noreferrer">
+              <b>{thisResult.location.address}</b>
             </a>
             <br />
-            <span style={{ fontSize: "0.6em" }}>
+            <span style={{ fontSize: "1.5vh" }}>
               (click on the address to open in Google Maps)
             </span>
             <br />
@@ -86,13 +153,17 @@ class ResultCard extends React.Component {
         <footer className="card-footer">
           <p className="card-footer-item">
             <span>
-              <a href={thisResult.menu_url} target="_blank">
+              <a
+                href={thisResult.menu_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View Menu
               </a>
             </span>
           </p>
           <p className="card-footer-item">
-            <span>⭐</span>
+            <span role="img">⭐</span>
           </p>
           <p className="card-footer-item">
             <span>Add Note </span>

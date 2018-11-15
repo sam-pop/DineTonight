@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import WelcomeContainer from "./WelcomeContainer";
 
 class DiceButton extends Component {
   constructor(props) {

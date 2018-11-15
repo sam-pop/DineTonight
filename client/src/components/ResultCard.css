@@ -1,0 +1,6 @@
+.card {
+  background-image: url("../images/cardBg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
