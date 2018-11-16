@@ -14,7 +14,10 @@ class NavBar extends Component {
               className="navbar-item navbar-start"
               onClick={this.handleBrandClick}
             >
-              Dine🥂Tonight!
+              Dine🥂Tonight!{" "}
+              <span className="is-size-6 is-size-7-mobile">
+                &nbsp;{"{Beta}"}
+              </span>
             </a>
             <a className="navbar-burger" data-target="navMenu">
               <span />
