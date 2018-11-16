@@ -42,7 +42,7 @@ class App extends Component {
 
   getResultsFromAPI = () => {
     API.getResults(this.state.currentLocation).then(res =>
-      this.setState({ results: res.data.nearby_restaurants })
+      this.setState({ results: res.data })
     );
   };
   getGeolocation = () => {

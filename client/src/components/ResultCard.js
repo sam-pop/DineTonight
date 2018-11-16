@@ -22,9 +22,9 @@ class ResultCard extends React.Component {
   };
 
   render() {
-    const thisResult = this.props.currentResult.restaurant;
-    const gmAddressLink =
-      "https://maps.google.com/?q=" + thisResult.location.address;
+    const thisResult = this.props.currentResult;
+    console.log(thisResult);
+    const gmAddressLink = "https://maps.google.com/?q=" + thisResult.address;
     const getStyles = () => {
       //style for small screens
       if (window.innerWidth < 667)
@@ -113,18 +113,14 @@ class ResultCard extends React.Component {
                 right: "0"
               }}
             >
-              {thisResult.user_rating.aggregate_rating > 4.0 ? (
-                <i style={{ color: "green" }}>
-                  {thisResult.user_rating.aggregate_rating}
-                </i>
+              {thisResult.rating >= 4.0 ? (
+                <i style={{ color: "green" }}>{thisResult.rating}</i>
               ) : (
-                <i style={{ color: "red" }}>
-                  {thisResult.user_rating.aggregate_rating}
-                </i>
+                <i style={{ color: "red" }}>{thisResult.rating}</i>
               )}{" "}
               / 5 &nbsp;
               <span style={{ fontSize: "1.5vh", color: "lightgray" }}>
-                <br />({thisResult.user_rating.votes} votes)
+                <br />({thisResult.votes} votes)
               </span>
             </span>
             <span>
@@ -139,7 +135,7 @@ class ResultCard extends React.Component {
             <br />
             <br />
             <a href={gmAddressLink} target="_blank" rel="noopener noreferrer">
-              <b>{thisResult.location.address}</b>
+              <b>{thisResult.address}</b>
             </a>
             <br />
             <span style={{ fontSize: "1.5vh" }}>
@@ -154,7 +150,7 @@ class ResultCard extends React.Component {
           <p className="card-footer-item">
             <span>
               <a
-                href={thisResult.menu_url}
+                href={thisResult.menu}
                 target="_blank"
                 rel="noopener noreferrer"
               >
