@@ -17,7 +17,7 @@ router.route("/").post((req, res) => {
     async function getRemoteData() {
       // Construct API urls
       const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
-      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=1000`;
+      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=1000&sort_by=rating&limit=50`;
 
       //API call to Zomato
       let zomato = await request({
@@ -42,7 +42,6 @@ router.route("/").post((req, res) => {
               phone: Obj.restaurant.phone_numbers
             };
           });
-          // console.log(JSON.stringify(zomatoBODY, null, 4));
           return true;
         })
         .catch(err => console.log(err));
@@ -57,30 +56,30 @@ router.route("/").post((req, res) => {
       })
         .then(yelpRes => {
           //Extracting relevant properties from the API response
-          yelpBODY = yelpRes.businesses.map(Obj => {
-            let thisCuisines = Obj.categories.map(Cat => {
-              return Cat.title;
+          yelpBODY = yelpRes.businesses
+            .filter(Obj => Obj.review_count >= 180)
+            .map(Obj => {
+              let thisCuisines = Obj.categories.map(Cat => {
+                return Cat.title;
+              });
+              return {
+                name: Obj.name,
+                cuisines: thisCuisines.toString(),
+                address: Obj.location.display_address[0],
+                price_range: Obj.price,
+                rating: Obj.rating,
+                votes: Obj.review_count,
+                link: Obj.url,
+                image: Obj.image_url,
+                phone: Obj.display_phone
+              };
             });
-            return {
-              name: Obj.name,
-              cuisines: thisCuisines.toString(),
-              address: Obj.location.display_address[0],
-              price_range: Obj.price,
-              rating: Obj.rating,
-              votes: Obj.review_count,
-              link: Obj.url,
-              image: Obj.image_url,
-              phone: Obj.display_phone
-            };
-          });
-          // console.log(JSON.stringify(yelpBODY, null, 4));
           return true;
         })
         .catch(err => console.log(err));
       //After both requests are done
       if (zomato && yelp) {
-        console.log("we got both working!");
-        // res.json(zomatoBODY);
+        console.log("Both API calls successfuly resolved!");
       }
     }
     let sendResults = new Promise((resolve, reject) => {
@@ -88,7 +87,7 @@ router.route("/").post((req, res) => {
       resolve(getRemoteData());
     });
     sendResults.then(() => {
-      res.json(yelpBODY);
+      res.json(zomatoBODY);
     });
   } else {
     console.log("Error passing the current location to API");

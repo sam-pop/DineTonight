@@ -13,12 +13,14 @@ class ResultCard extends React.Component {
     this.setState({ currentResult: nextProps.currentResult });
   }
 
-  renderDollarSigns = num => {
-    let res = "";
-    for (let i = 0; i < num; i++) {
-      res += "$";
-    }
-    return res;
+  renderDollarSigns = val => {
+    if (typeof val === "number") {
+      let res = "";
+      for (let i = 0; i < val; i++) {
+        res += "$";
+      }
+      return res;
+    } else return val;
   };
 
   render() {

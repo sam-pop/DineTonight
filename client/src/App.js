@@ -28,12 +28,21 @@ class App extends Component {
       this.setState({ message: "Calculating best-matches" });
       setTimeout(() => {
         if (this.state.firstRun) {
-          this.setState({ firstRun: false });
           if (this.state.results) {
             this.setState({ message: "" });
-            this.setState({
-              currentContainer: <ResultContainer results={this.state.results} />
-            });
+            if (this.state.results.length > 0) {
+              this.setState({ firstRun: false });
+
+              this.setState({
+                currentContainer: (
+                  <ResultContainer results={this.state.results} />
+                )
+              });
+            } else {
+              this.setState({
+                message: "SORRY, NO RESULTS FOR YOUR CURRENT LOCATION!"
+              });
+            }
           }
         }
       }, 3000);
