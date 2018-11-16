@@ -29,7 +29,20 @@ router.route("/").post((req, res) => {
           json: true
         })
           .then(apiRes => {
-            zomatoBODY = apiRes;
+            //Extracting relevant properties from the API response
+            zomatoBODY = apiRes.nearby_restaurants.map(Obj => {
+              return {
+                name: Obj.restaurant.name,
+                cuisines: Obj.restaurant.cuisines,
+                address: Obj.restaurant.location.address,
+                price_range: Obj.restaurant.price_range,
+                rating: Obj.restaurant.user_rating.aggregate_rating,
+                votes: Obj.restaurant.user_rating.votes,
+                menu: Obj.restaurant.menu_url,
+                image: Obj.restaurant.featured_image
+              };
+            });
+            console.log(JSON.stringify(zomatoBODY, null, 4));
             return true;
           })
           .catch(err => console.log(err));
