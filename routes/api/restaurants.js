@@ -26,7 +26,7 @@ router.route("/").post((req, res) => {
         },
         (error, response, body) => {
           zomatoBODY = JSON.parse(body);
-          // return res.json(JSON.parse(body));
+          return res.json(JSON.parse(body));
         }
       );
       //API call to Yelp
