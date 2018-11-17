@@ -26,7 +26,7 @@ class DiceButton extends Component {
       }
     };
     return (
-      <button className="button randomBtn">
+      <button className="randomBtn">
         <i
           className={
             this.state.firstRun === true ? "fas fa-dice" : this.randDiceIcon()

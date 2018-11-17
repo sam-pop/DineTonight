@@ -10,28 +10,26 @@ class NavBar extends Component {
       <div>
         <nav className="navbar">
           <div className="navbar-brand">
-            <a
-              className="navbar-item navbar-start"
-              onClick={this.handleBrandClick}
-            >
+            <a className="navbar-item" onClick={this.handleBrandClick}>
               Dine🥂Tonight!{" "}
-              <span className="is-size-6 is-size-7-mobile">
+              <span style={{ fontSize: "1.5vh", verticalAlign: "middle" }}>
                 &nbsp;{"{Beta}"}
               </span>
             </a>
-            <a className="navbar-burger" data-target="navMenu">
-              <span />
-              <span />
-              <span />
-            </a>
-          </div>
-
-          <div className="navbar-menu navbar-end" id="navMenu">
-            <a className="navbar-item">About</a>
-            <a className="navbar-item">
-              <i class="fas fa-sign-in-alt" />
-              &nbsp;Login
-            </a>
+            {/* <span
+              style={{
+                float: "right",
+                paddingRight: "2px",
+                paddingLeft: "2px",
+                fontSize: "2.3vh"
+              }}
+            >
+              <a className="navbar-item">About</a>
+              <a className="navbar-item">
+                <i class="fas fa-sign-in-alt" />
+                &nbsp;Login
+              </a>
+            </span> */}
           </div>
         </nav>
       </div>

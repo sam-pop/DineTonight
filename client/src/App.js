@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
