@@ -16,7 +16,7 @@ router.route("/").post((req, res) => {
     async function getRemoteData() {
       // Construct API uris
       const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
-      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=1000&sort_by=rating&limit=50`;
+      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=500&sort_by=rating&limit=50`;
 
       //API call to Zomato
       let zomato = await request({
