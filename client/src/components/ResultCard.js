@@ -13,20 +13,9 @@ class ResultCard extends React.Component {
     this.setState({ currentResult: nextProps.currentResult });
   }
 
-  renderDollarSigns = val => {
-    if (typeof val === "number") {
-      let res = "";
-      for (let i = 0; i < val; i++) {
-        res += "$";
-      }
-      return res;
-    } else return val;
-  };
-
   render() {
     const thisResult = this.props.currentResult;
     console.log(thisResult);
-    const gmAddressLink = "https://maps.google.com/?q=" + thisResult.address;
     const getStyles = () => {
       //style for small screens
       if (window.innerWidth < 667)
@@ -104,7 +93,7 @@ class ResultCard extends React.Component {
                 color: "#242038"
               }}
             >
-              {this.renderDollarSigns(thisResult.price_range)}
+              {thisResult.price_range}
             </span>
             <br />
             <span
@@ -136,7 +125,11 @@ class ResultCard extends React.Component {
             {/* </div> */}
             <br />
             <br />
-            <a href={gmAddressLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={thisResult.address_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <b>{thisResult.address}</b>
             </a>
             <br />

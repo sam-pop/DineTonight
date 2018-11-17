@@ -34,7 +34,10 @@ router.route("/").post((req, res) => {
               name: Obj.restaurant.name,
               cuisines: Obj.restaurant.cuisines,
               address: Obj.restaurant.location.address,
-              price_range: Obj.restaurant.price_range,
+              address_link: `https://maps.google.com/?q=${
+                Obj.restaurant.location.address
+              }`,
+              price_range: renderDollarSigns(Obj.restaurant.price_range),
               rating: Obj.restaurant.user_rating.aggregate_rating,
               votes: Obj.restaurant.user_rating.votes,
               menu: Obj.restaurant.menu_url,
@@ -66,6 +69,9 @@ router.route("/").post((req, res) => {
                 name: Obj.name,
                 cuisines: thisCuisines.toString(),
                 address: Obj.location.display_address[0],
+                address_link: `https://maps.google.com/?q=${
+                  Obj.location.display_address[0]
+                }`,
                 price_range: Obj.price,
                 rating: Obj.rating,
                 votes: Obj.review_count,
@@ -93,5 +99,16 @@ router.route("/").post((req, res) => {
     console.log("Error passing the current location to API");
   }
 });
+
+// Helper method to convert price_range from a number to '$'
+function renderDollarSigns(val) {
+  if (typeof val === "number") {
+    let res = "";
+    for (let i = 0; i < val; i++) {
+      res += "$";
+    }
+    return res;
+  } else return val;
+}
 
 module.exports = router;
