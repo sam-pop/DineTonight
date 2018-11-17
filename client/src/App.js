@@ -22,29 +22,6 @@ class App extends Component {
     this.getGeolocation();
   }
 
-  handleClick = () => {
-    if (this.state.currentLocation !== null) {
-      this.getResultsFromAPI();
-      this.setState({ message: "Calculating best-matches" });
-      setTimeout(() => {
-        if (this.state.firstRun) {
-          this.setState({ firstRun: false });
-          if (this.state.results) {
-            this.setState({ message: "" });
-            this.setState({
-              currentContainer: <ResultContainer results={this.state.results} />
-            });
-          }
-        }
-      }, 3000);
-    } else alert("Current location not found! Please enable location services");
-  };
-
-  getResultsFromAPI = () => {
-    API.getResults(this.state.currentLocation).then(res =>
-      this.setState({ results: res.data.nearby_restaurants })
-    );
-  };
   getGeolocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -62,6 +39,32 @@ class App extends Component {
 
   changeFirstRun = () => {
     this.setState({ firstRun: false });
+  };
+
+  handleClick = () => {
+    if (this.state.currentLocation) {
+      this.setState({ message: "Calculating best-matches" });
+      API.getResults(this.state.currentLocation)
+        .then(res => this.setState({ results: res.data }))
+        .then(() => {
+          if (this.state.firstRun && this.state.results) {
+            this.setState({ message: "" });
+            if (this.state.results.length > 0) {
+              this.setState({ firstRun: false });
+              this.setState({
+                currentContainer: (
+                  <ResultContainer results={this.state.results} />
+                )
+              });
+            } else {
+              this.setState({
+                message: "SORRY, NO RESULTS FOR YOUR CURRENT LOCATION!"
+              });
+            }
+          }
+        })
+        .catch(err => console.log(err));
+    } else alert("Current location not found! Please enable location services");
   };
 
   render() {

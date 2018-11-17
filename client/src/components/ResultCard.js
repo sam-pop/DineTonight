@@ -13,18 +13,8 @@ class ResultCard extends React.Component {
     this.setState({ currentResult: nextProps.currentResult });
   }
 
-  renderDollarSigns = num => {
-    let res = "";
-    for (let i = 0; i < num; i++) {
-      res += "$";
-    }
-    return res;
-  };
-
   render() {
-    const thisResult = this.props.currentResult.restaurant;
-    const gmAddressLink =
-      "https://maps.google.com/?q=" + thisResult.location.address;
+    const thisResult = this.props.currentResult;
     const getStyles = () => {
       //style for small screens
       if (window.innerWidth < 667)
@@ -32,7 +22,6 @@ class ResultCard extends React.Component {
           card: {
             width: "90%",
             minHeight: "50vh",
-            maxHeight: "55vh",
             margin: "0 auto",
             marginTop: "5%",
             textAlign: "center",
@@ -51,8 +40,7 @@ class ResultCard extends React.Component {
           },
           imgContainer: {
             margin: "0 auto",
-            width: "50%",
-            marginBottom: "10%"
+            width: "70%"
           }
         };
       //style sfor large screens
@@ -60,9 +48,9 @@ class ResultCard extends React.Component {
         return {
           card: {
             width: "70%",
-            height: "45vh",
+            minHeight: "45vh",
             margin: "0 auto",
-            marginTop: "7%",
+            marginTop: "5%",
             textAlign: "center",
             boxShadow: "0px 5px 16px 2px rgba(171,171,171,1)"
           },
@@ -79,8 +67,7 @@ class ResultCard extends React.Component {
           },
           imgContainer: {
             margin: "0 auto",
-            width: "50%",
-            marginBottom: "10%"
+            maxWidth: "50%"
           }
         };
     };
@@ -90,6 +77,7 @@ class ResultCard extends React.Component {
         <div className="card-content">
           <p className="title" style={getStyles().title}>
             <span style={getStyles().name}>
+              <br />
               <u>{thisResult.name}</u>
             </span>
             <br />
@@ -102,7 +90,7 @@ class ResultCard extends React.Component {
                 color: "#242038"
               }}
             >
-              {this.renderDollarSigns(thisResult.price_range)}
+              {thisResult.price_range}
             </span>
             <br />
             <span
@@ -113,18 +101,14 @@ class ResultCard extends React.Component {
                 right: "0"
               }}
             >
-              {thisResult.user_rating.aggregate_rating > 4.0 ? (
-                <i style={{ color: "green" }}>
-                  {thisResult.user_rating.aggregate_rating}
-                </i>
+              {thisResult.rating >= 4.0 ? (
+                <i style={{ color: "green" }}>{thisResult.rating}</i>
               ) : (
-                <i style={{ color: "red" }}>
-                  {thisResult.user_rating.aggregate_rating}
-                </i>
+                <i style={{ color: "red" }}>{thisResult.rating}</i>
               )}{" "}
               / 5 &nbsp;
               <span style={{ fontSize: "1.5vh", color: "lightgray" }}>
-                <br />({thisResult.user_rating.votes} votes)
+                <br />({thisResult.votes} votes)
               </span>
             </span>
             <span>
@@ -133,13 +117,16 @@ class ResultCard extends React.Component {
             <br />
           </p>
           <p className="subtitle" style={getStyles().subtitle}>
-            {/* <div className="img-container" style={getStyles().imgContainer}> */}
-            {/* <img src={thisResult.featured_image} /> */}
-            {/* </div> */}
+            {/* <figure style={getStyles().imgContainer}>
+              <img src={thisResult.image} />
+            </figure> */}
             <br />
-            <br />
-            <a href={gmAddressLink} target="_blank" rel="noopener noreferrer">
-              <b>{thisResult.location.address}</b>
+            <a
+              href={thisResult.address_link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <b>{thisResult.address}</b>
             </a>
             <br />
             <span style={{ fontSize: "1.5vh" }}>
@@ -147,19 +134,37 @@ class ResultCard extends React.Component {
             </span>
             <br />
             <br />
+            {thisResult.phone ? (
+              <span>
+                <i className="fa fa-phone" aria-hidden="true" />{" "}
+                {thisResult.phone}
+              </span>
+            ) : (
+              ""
+            )}
             <br />
           </p>
         </div>
         <footer className="card-footer">
           <p className="card-footer-item">
             <span>
-              <a
-                href={thisResult.menu_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Menu
-              </a>
+              {thisResult.menu ? (
+                <a
+                  href={thisResult.menu}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Menu
+                </a>
+              ) : (
+                <a
+                  href={thisResult.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Link
+                </a>
+              )}
             </span>
           </p>
           <p className="card-footer-item">
