@@ -93,7 +93,7 @@ router.route("/").post((req, res) => {
       resolve(getRemoteData());
     });
     sendResults.then(() => {
-      res.json(zomatoBODY);
+      res.json([...zomatoBODY, ...yelpBODY]);
     });
   } else {
     console.log("Error passing the current location to API");
