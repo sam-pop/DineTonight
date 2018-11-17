@@ -23,16 +23,19 @@ class App extends Component {
   }
 
   handleClick = () => {
+    //TODO NEED TO DEBUG THIS
     if (this.state.currentLocation !== null) {
-      this.getResultsFromAPI();
-      this.setState({ message: "Calculating best-matches" });
-      setTimeout(() => {
+      let APIsuccess = new Promise((resolve, reject) => {
+        this.setState({ message: "Calculating best-matches" });
+        resolve(this.getResultsFromAPI());
+      });
+      //TODO NEED TO DEBUG THIS
+      APIsuccess.then(() => {
         if (this.state.firstRun) {
           if (this.state.results) {
             this.setState({ message: "" });
             if (this.state.results.length > 0) {
               this.setState({ firstRun: false });
-
               this.setState({
                 currentContainer: (
                   <ResultContainer results={this.state.results} />
@@ -45,7 +48,7 @@ class App extends Component {
             }
           }
         }
-      }, 3000);
+      });
     } else alert("Current location not found! Please enable location services");
   };
 

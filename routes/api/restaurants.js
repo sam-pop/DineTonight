@@ -15,13 +15,14 @@ router.route("/").post((req, res) => {
 
     //Using async-await and promises to handle multi-data fetching from remote servers
     async function getRemoteData() {
-      // Construct API urls
+      // Construct API uris
       const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
       const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=1000&sort_by=rating&limit=50`;
 
       //API call to Zomato
       let zomato = await request({
         headers: {
+          // auth header
           "user-key": process.env.ZOMATO_API
         },
         uri: zomatoURL,
@@ -52,6 +53,7 @@ router.route("/").post((req, res) => {
       //API call to Yelp
       let yelp = await request({
         headers: {
+          // uth header
           Authorization: `Bearer ${process.env.YELP_API}`
         },
         uri: yelpURL,
@@ -86,15 +88,20 @@ router.route("/").post((req, res) => {
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
+        res.json([...zomatoBODY, ...yelpBODY]);
+      } else {
+        console.log("API ERROR!");
       }
     }
-    let sendResults = new Promise((resolve, reject) => {
-      console.log("Promise running...");
-      resolve(getRemoteData());
-    });
-    sendResults.then(() => {
-      res.json([...zomatoBODY, ...yelpBODY]);
-    });
+    // Promise to handle sending back the results AFTER the the data is ready
+    // let sendResults = new Promise((resolve, reject) => {
+    //   console.log("Promise running...");
+    //   resolve(getRemoteData());
+    // });
+    // sendResults.then(() => {
+    //   res.json([...zomatoBODY, ...yelpBODY]);
+    // });
+    getRemoteData();
   } else {
     console.log("Error passing the current location to API");
   }
