@@ -25,12 +25,12 @@ const WelcomeContainer = props => {
       <h1>Looking for a place to eat?</h1>
       <h2>{responsiveSubtitle()}</h2>
       <section className="container" style={styles}>
-        <div className="has-text-left">
+        <div className="has-text-left" style={{ marginLeft: "5px" }}>
           <br />
           We can show you a <u>top-rating</u> restuarnt near your current
           location with a simple click of a button!
         </div>{" "}
-        <div className="has-text-right">
+        <div className="has-text-right" style={{ marginRight: "5px" }}>
           <br />
           So why won't you let us make the tough decisions, leaving you with
           more time to relax.

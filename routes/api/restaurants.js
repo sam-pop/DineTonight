@@ -88,19 +88,11 @@ router.route("/").post((req, res) => {
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
-        res.json([...zomatoBODY, ...yelpBODY]);
+        res.json(shuffle([...zomatoBODY, ...yelpBODY]));
       } else {
         console.log("API ERROR!");
       }
     }
-    // Promise to handle sending back the results AFTER the the data is ready
-    // let sendResults = new Promise((resolve, reject) => {
-    //   console.log("Promise running...");
-    //   resolve(getRemoteData());
-    // });
-    // sendResults.then(() => {
-    //   res.json([...zomatoBODY, ...yelpBODY]);
-    // });
     getRemoteData();
   } else {
     console.log("Error passing the current location to API");
@@ -116,6 +108,15 @@ function renderDollarSigns(val) {
     }
     return res;
   } else return val;
+}
+
+// Helper method to shuffle an array (in-place)
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
 module.exports = router;

@@ -15,7 +15,6 @@ class ResultCard extends React.Component {
 
   render() {
     const thisResult = this.props.currentResult;
-    console.log(thisResult);
     const getStyles = () => {
       //style for small screens
       if (window.innerWidth < 667)
@@ -23,7 +22,6 @@ class ResultCard extends React.Component {
           card: {
             width: "90%",
             minHeight: "50vh",
-            maxHeight: "55vh",
             margin: "0 auto",
             marginTop: "5%",
             textAlign: "center",
@@ -42,8 +40,7 @@ class ResultCard extends React.Component {
           },
           imgContainer: {
             margin: "0 auto",
-            width: "50%",
-            marginBottom: "10%"
+            width: "70%"
           }
         };
       //style sfor large screens
@@ -51,9 +48,9 @@ class ResultCard extends React.Component {
         return {
           card: {
             width: "70%",
-            height: "45vh",
+            minHeight: "45vh",
             margin: "0 auto",
-            marginTop: "7%",
+            marginTop: "5%",
             textAlign: "center",
             boxShadow: "0px 5px 16px 2px rgba(171,171,171,1)"
           },
@@ -70,8 +67,7 @@ class ResultCard extends React.Component {
           },
           imgContainer: {
             margin: "0 auto",
-            width: "50%",
-            marginBottom: "10%"
+            maxWidth: "50%"
           }
         };
     };
@@ -81,6 +77,7 @@ class ResultCard extends React.Component {
         <div className="card-content">
           <p className="title" style={getStyles().title}>
             <span style={getStyles().name}>
+              <br />
               <u>{thisResult.name}</u>
             </span>
             <br />
@@ -120,10 +117,9 @@ class ResultCard extends React.Component {
             <br />
           </p>
           <p className="subtitle" style={getStyles().subtitle}>
-            {/* <div className="img-container" style={getStyles().imgContainer}> */}
-            {/* <img src={thisResult.featured_image} /> */}
-            {/* </div> */}
-            <br />
+            {/* <figure style={getStyles().imgContainer}>
+              <img src={thisResult.image} />
+            </figure> */}
             <br />
             <a
               href={thisResult.address_link}
@@ -138,19 +134,37 @@ class ResultCard extends React.Component {
             </span>
             <br />
             <br />
+            {thisResult.phone ? (
+              <span>
+                <i className="fa fa-phone" aria-hidden="true" />{" "}
+                {thisResult.phone}
+              </span>
+            ) : (
+              ""
+            )}
             <br />
           </p>
         </div>
         <footer className="card-footer">
           <p className="card-footer-item">
             <span>
-              <a
-                href={thisResult.menu}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Menu
-              </a>
+              {thisResult.menu ? (
+                <a
+                  href={thisResult.menu}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Menu
+                </a>
+              ) : (
+                <a
+                  href={thisResult.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Link
+                </a>
+              )}
             </span>
           </p>
           <p className="card-footer-item">
