@@ -6,7 +6,6 @@ const request = require("request-promise-native");
 router.route("/").post((req, res) => {
   let zomatoBODY;
   let yelpBODY;
-  let ready = false;
   // Current location is passed through the req
   if (req.body) {
     //Parsing coordinates
@@ -93,6 +92,7 @@ router.route("/").post((req, res) => {
         console.log("API ERROR!");
       }
     }
+    // RUN!
     getRemoteData();
   } else {
     console.log("Error passing the current location to API");
