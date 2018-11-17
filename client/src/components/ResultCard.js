@@ -101,13 +101,13 @@ class ResultCard extends React.Component {
                 right: "0"
               }}
             >
-              {thisResult.rating >= 4.0 ? (
+              {thisResult.rating >= 4.5 ? (
                 <i style={{ color: "green" }}>{thisResult.rating}</i>
               ) : (
-                <i style={{ color: "red" }}>{thisResult.rating}</i>
+                <i style={{ color: "#474747" }}>{thisResult.rating}</i>
               )}{" "}
               / 5 &nbsp;
-              <span style={{ fontSize: "1.5vh", color: "lightgray" }}>
+              <span style={{ fontSize: "1.5vh", color: "#a0a0a0" }}>
                 <br />({thisResult.votes} votes)
               </span>
             </span>
@@ -137,7 +137,7 @@ class ResultCard extends React.Component {
             {thisResult.phone ? (
               <span>
                 <i className="fa fa-phone" aria-hidden="true" />{" "}
-                {thisResult.phone}
+                <a href={thisResult.phone_link}>{thisResult.phone}</a>
               </span>
             ) : (
               ""

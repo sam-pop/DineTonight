@@ -29,22 +29,24 @@ router.route("/").post((req, res) => {
       })
         .then(apiRes => {
           //Extracting relevant properties from the API response
-          zomatoBODY = apiRes.nearby_restaurants.map(Obj => {
-            return {
-              name: Obj.restaurant.name,
-              cuisines: Obj.restaurant.cuisines,
-              address: Obj.restaurant.location.address,
-              address_link: `https://maps.google.com/?q=${
-                Obj.restaurant.location.address
-              }`,
-              price_range: renderDollarSigns(Obj.restaurant.price_range),
-              rating: Obj.restaurant.user_rating.aggregate_rating,
-              votes: Obj.restaurant.user_rating.votes,
-              menu: Obj.restaurant.menu_url,
-              image: Obj.restaurant.featured_image,
-              phone: Obj.restaurant.phone_numbers
-            };
-          });
+          zomatoBODY = apiRes.nearby_restaurants
+            .filter(Obj => Obj.restaurant.user_rating.aggregate_rating >= 4)
+            .map(Obj => {
+              return {
+                name: Obj.restaurant.name,
+                cuisines: Obj.restaurant.cuisines,
+                address: Obj.restaurant.location.address,
+                address_link: `https://maps.google.com/?q=${
+                  Obj.restaurant.location.address
+                }`,
+                price_range: renderDollarSigns(Obj.restaurant.price_range),
+                rating: Obj.restaurant.user_rating.aggregate_rating,
+                votes: Obj.restaurant.user_rating.votes,
+                menu: Obj.restaurant.menu_url,
+                image: Obj.restaurant.featured_image,
+                phone: Obj.restaurant.phone_numbers
+              };
+            });
           return true;
         })
         .catch(err => console.log(err));
@@ -61,7 +63,7 @@ router.route("/").post((req, res) => {
         .then(yelpRes => {
           //Extracting relevant properties from the API response
           yelpBODY = yelpRes.businesses
-            .filter(Obj => Obj.review_count >= 180)
+            .filter(Obj => Obj.review_count >= 180 && Obj.rating >= 4)
             .map(Obj => {
               let thisCuisines = Obj.categories.map(Cat => {
                 return Cat.title;
@@ -78,7 +80,8 @@ router.route("/").post((req, res) => {
                 votes: Obj.review_count,
                 link: Obj.url,
                 image: Obj.image_url,
-                phone: Obj.display_phone
+                phone: Obj.display_phone,
+                phone_link: `tel:${Obj.phone}`
               };
             });
           return true;
