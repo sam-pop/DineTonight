@@ -3,8 +3,7 @@ const resturantsController = require("../../controllers/resturantsController");
 const request = require("request-promise-native");
 
 // Matches with "/api/restaurants"
-router.route("/").post((req, res) => {
-  const searchRadius = req.body.radius;
+router.post("/", (req, res) => {
   let zomatoBODY;
   let yelpBODY;
   // Current location is passed through the req

@@ -1,6 +1,8 @@
 const express = require("express");
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("./config/passport");
 const routes = require("./routes");
 require("dotenv").config();
 
@@ -20,6 +22,17 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+// Initialize passport
+app.use(
+  session({
+    secret: "bigBalagan",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes (API and view)
 app.use(routes);
