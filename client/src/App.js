@@ -44,7 +44,11 @@ class App extends Component {
     if (this.state.currentLocation) {
       this.setState({ message: "Calculating best-matches" });
       API.getResults(this.state.currentLocation)
-        .then(res => this.setState({ results: res.data }))
+        .then(res =>
+          res.data.error
+            ? this.setState({ message: res.data.error })
+            : this.setState({ results: res.data })
+        )
         .then(() => {
           if (this.state.firstRun && this.state.results) {
             this.setState({ message: "" });
