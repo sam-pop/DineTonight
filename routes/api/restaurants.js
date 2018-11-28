@@ -10,8 +10,8 @@ router.route("/").post((req, res) => {
   // Current location is passed through the req
   if (req.body) {
     //Parsing coordinates
-    let lat = parseFloat(req.body.lat);
-    let lon = parseFloat(req.body.lon);
+    let lat = parseFloat(req.body.location.lat);
+    let lon = parseFloat(req.body.location.lon);
 
     //Using async-await and promises to handle multi-data fetching from remote servers
     async function getRemoteData() {

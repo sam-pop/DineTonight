@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
+import Dropdown from "./components/Dropdown";
 import API from "./utils/API";
 import "./App.css";
 
@@ -12,6 +13,7 @@ class App extends Component {
     firstRun: true,
     loggedIn: null,
     currentLocation: null,
+    selectedRadius: 1000,
     currentContainer: <WelcomeContainer />,
     results: null,
     message: "Roll the dice to begin"
@@ -40,10 +42,19 @@ class App extends Component {
     this.setState({ firstRun: false });
   };
 
+  changeRadius = event => {
+    this.setState({
+      selectedRadius: parseInt(event.currentTarget.dataset.radius)
+    });
+  };
+
   handleClick = () => {
     if (this.state.currentLocation) {
       this.setState({ message: "Calculating best-matches" });
-      API.getResults(this.state.currentLocation)
+      API.getResults({
+        location: this.state.currentLocation,
+        radius: this.state.selectedRadius
+      })
         .then(res => this.setState({ results: res.data }))
         .then(() => {
           if (this.state.firstRun && this.state.results) {
@@ -90,6 +101,12 @@ class App extends Component {
         >
           {this.state.message}
         </div>
+
+        {this.state.firstRun ? (
+          <Dropdown changeRadius={this.changeRadius} />
+        ) : (
+          ""
+        )}
       </div>
     );
   }
