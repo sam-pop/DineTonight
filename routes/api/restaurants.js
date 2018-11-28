@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
       //API call to Zomato
       let zomato = await request({
         headers: {
-          // auth header
+          // Auth header
           "user-key": process.env.ZOMATO_API
         },
         uri: zomatoURL,
@@ -49,12 +49,12 @@ router.post("/", (req, res) => {
             });
           return true;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("Zomato API: ", err.message));
 
       //API call to Yelp
       let yelp = await request({
         headers: {
-          // uth header
+          // Auth header
           Authorization: `Bearer ${process.env.YELP_API}`
         },
         uri: yelpURL,
@@ -86,19 +86,31 @@ router.post("/", (req, res) => {
             });
           return true;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("Yelp API: ", err.message));
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
         res.json(shuffle([...zomatoBODY, ...yelpBODY]));
       } else {
-        console.log("API ERROR!");
+        // API error handling
+        if (zomato) {
+          console.log("Only Zomato API call successfuly resolved!");
+          res.json(shuffle([...zomatoBODY]));
+        } else if (yelp) {
+          console.log("Only Yelp API call successfuly resolved!");
+          res.json(shuffle([...yelpBODY]));
+        } else {
+          console.log("API ERROR!");
+          res.json({
+            error: "API ERROR! Try again (or report the issue on GitHub)"
+          });
+        }
       }
     }
     // RUN!
     getRemoteData();
   } else {
-    console.log("Error passing the current location to API");
+    console.log("Error passing the current location to the API");
   }
 });
 
