@@ -50,7 +50,7 @@ router.route("/").post((req, res) => {
             });
           return true;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("Zomato API: ", err.message));
 
       //API call to Yelp
       let yelp = await request({
@@ -87,13 +87,25 @@ router.route("/").post((req, res) => {
             });
           return true;
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("Yelp API: ", err.message));
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
         res.json(shuffle([...zomatoBODY, ...yelpBODY]));
       } else {
-        console.log("API ERROR!");
+        // API error handling
+        if (zomato) {
+          console.log("Only Zomato API call successfuly resolved!");
+          res.json(shuffle([...zomatoBODY]));
+        } else if (yelp) {
+          console.log("Only Yelp API call successfuly resolved!");
+          res.json(shuffle([...yelpBODY]));
+        } else {
+          console.log("API ERROR!");
+          res.json({
+            error: "API ERROR! Try again (or report the issue on GitHub)"
+          });
+        }
       }
     }
     // RUN!
