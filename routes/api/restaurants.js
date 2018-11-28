@@ -22,7 +22,7 @@ router.route("/").post((req, res) => {
       //API call to Zomato
       let zomato = await request({
         headers: {
-          // auth header
+          // Auth header
           "user-key": process.env.ZOMATO_API
         },
         uri: zomatoURL,
@@ -55,7 +55,7 @@ router.route("/").post((req, res) => {
       //API call to Yelp
       let yelp = await request({
         headers: {
-          // uth header
+          // Auth header
           Authorization: `Bearer ${process.env.YELP_API}`
         },
         uri: yelpURL,
@@ -111,7 +111,7 @@ router.route("/").post((req, res) => {
     // RUN!
     getRemoteData();
   } else {
-    console.log("Error passing the current location to API");
+    console.log("Error passing the current location to the API");
   }
 });
 
