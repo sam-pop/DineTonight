@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import ResultCard from "./ResultCard";
 import DiceButton from "./DiceButton";
 
-class ResultContainer extends React.Component {
+class ResultContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
