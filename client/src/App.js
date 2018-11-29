@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
+import Dropdown from "./components/Dropdown";
 import API from "./utils/API";
 import "./App.css";
 
@@ -12,6 +13,7 @@ class App extends Component {
     firstRun: true,
     loggedIn: null,
     currentLocation: null,
+    selectedRadius: 1000,
     currentContainer: <WelcomeContainer />,
     results: null,
     message: "Roll the dice to begin"
@@ -40,10 +42,19 @@ class App extends Component {
     this.setState({ firstRun: false });
   };
 
+  changeRadius = event => {
+    this.setState({
+      selectedRadius: parseInt(event.currentTarget.dataset.radius)
+    });
+  };
+
   handleClick = () => {
     if (this.state.currentLocation) {
       this.setState({ message: "Calculating best-matches" });
-      API.getResults(this.state.currentLocation)
+      API.getResults({
+        location: this.state.currentLocation,
+        radius: this.state.selectedRadius
+      })
         .then(res =>
           res.data.error
             ? this.setState({ message: res.data.error })
@@ -75,6 +86,19 @@ class App extends Component {
       <div className="App">
         <NavBar />
         {this.state.currentContainer}
+        <div
+          className="has-text-centered"
+          style={{ marginTop: "10%", marginBottom: "1%" }}
+        >
+          {this.state.firstRun ? (
+            <Dropdown
+              changeRadius={this.changeRadius}
+              selectedRadius={this.state.selectedRadius}
+            />
+          ) : (
+            ""
+          )}
+        </div>
         <div className="has-text-centered animated pulse">
           <span onClick={this.handleClick}>
             {this.state.firstRun ? (

@@ -3,15 +3,14 @@ const resturantsController = require("../../controllers/resturantsController");
 const request = require("request-promise-native");
 
 // Matches with "/api/restaurants"
-router.route("/").post((req, res) => {
-  const searchRadius = 1000;
+router.post("/", (req, res) => {
   let zomatoBODY;
   let yelpBODY;
   // Current location is passed through the req
   if (req.body) {
     //Parsing coordinates
-    let lat = parseFloat(req.body.lat);
-    let lon = parseFloat(req.body.lon);
+    let lat = parseFloat(req.body.location.lat);
+    let lon = parseFloat(req.body.location.lon);
 
     //Using async-await and promises to handle multi-data fetching from remote servers
     async function getRemoteData() {
