@@ -9,6 +9,7 @@ router.post("/", (req, res) => {
   // Current location is passed through the req
   if (req.body) {
     //Parsing coordinates
+    let searchRadius = parseInt(req.body.radius);
     let lat = parseFloat(req.body.location.lat);
     let lon = parseFloat(req.body.location.lon);
 

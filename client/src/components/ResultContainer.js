@@ -32,7 +32,9 @@ class ResultContainer extends Component {
   render() {
     return (
       <div className="animated fadeInDown">
-        <ResultCard currentResult={this.state.tempRes} />
+        <div style={{ marginBottom: "10%" }}>
+          <ResultCard currentResult={this.state.tempRes} />
+        </div>
         <div className="has-text-centered animated fadeIn">
           <span onClick={this.handleClick}>
             <DiceButton firstRun={false} />
