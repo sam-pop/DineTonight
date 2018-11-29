@@ -34,9 +34,9 @@ class Dropdown extends Component {
   render() {
     return (
       <div className="dd-container">
-        Search radius
+        Preferred search radius
         <div id="dd" class="dropdown" onClick={this.handleClick}>
-          <span class="pointer">
+          <span class="pointer" style={{ fontSize: "1.3em" }}>
             &nbsp;<u>{this.props.selectedRadius}</u>
           </span>
           <div id="dc" class="dropdown-content">

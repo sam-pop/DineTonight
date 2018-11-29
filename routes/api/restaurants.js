@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
     async function getRemoteData() {
       // Construct API uris
       const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
-      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=${searchRadius}&sort_by=rating&limit=50`;
+      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=${searchRadius}&sort_by=best_match&limit=50`;
 
       //API call to Zomato
       let zomato = await request({
@@ -64,7 +64,7 @@ router.post("/", (req, res) => {
         .then(yelpRes => {
           //Extracting relevant properties from the API response
           yelpBODY = yelpRes.businesses
-            .filter(Obj => Obj.review_count >= 180 && Obj.rating >= 4)
+            .filter(Obj => Obj.review_count >= 150 && Obj.rating >= 4)
             .map(Obj => {
               let thisCuisines = Obj.categories.map(Cat => {
                 return Cat.title;
@@ -82,7 +82,8 @@ router.post("/", (req, res) => {
                 link: Obj.url,
                 image: Obj.image_url,
                 phone: Obj.display_phone,
-                phone_link: `tel:${Obj.phone}`
+                phone_link: `tel:${Obj.phone}`,
+                distance: Obj.distance
               };
             });
           return true;
@@ -91,6 +92,7 @@ router.post("/", (req, res) => {
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
+        console.log(yelpBODY);
         res.json(shuffle([...zomatoBODY, ...yelpBODY]));
       } else {
         // API error handling
