@@ -82,6 +82,19 @@ class App extends Component {
       <div className="App">
         <NavBar />
         {this.state.currentContainer}
+        <div
+          className="has-text-centered"
+          style={{ marginTop: "10%", marginBottom: "1%" }}
+        >
+          {this.state.firstRun ? (
+            <Dropdown
+              changeRadius={this.changeRadius}
+              selectedRadius={this.state.selectedRadius}
+            />
+          ) : (
+            ""
+          )}
+        </div>
         <div className="has-text-centered animated pulse">
           <span onClick={this.handleClick}>
             {this.state.firstRun ? (
@@ -101,15 +114,6 @@ class App extends Component {
         >
           {this.state.message}
         </div>
-
-        {this.state.firstRun ? (
-          <Dropdown
-            changeRadius={this.changeRadius}
-            selectedRadius={this.state.selectedRadius}
-          />
-        ) : (
-          ""
-        )}
       </div>
     );
   }

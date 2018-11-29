@@ -33,10 +33,10 @@ class Dropdown extends Component {
 
   render() {
     return (
-      <div>
+      <div className="dd-container">
         Search radius
         <div id="dd" class="dropdown" onClick={this.handleClick}>
-          <span class="">
+          <span class="pointer">
             &nbsp;<u>{this.props.selectedRadius}</u>
           </span>
           <div id="dc" class="dropdown-content">
