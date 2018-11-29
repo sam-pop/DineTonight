@@ -103,7 +103,10 @@ class App extends Component {
         </div>
 
         {this.state.firstRun ? (
-          <Dropdown changeRadius={this.changeRadius} />
+          <Dropdown
+            changeRadius={this.changeRadius}
+            selectedRadius={this.state.selectedRadius}
+          />
         ) : (
           ""
         )}

@@ -5,16 +5,41 @@ class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRadius: this.props.selectedRadius
+      selectedRadius: this.props.selectedRadius,
+      isVisible: false
     };
   }
+
+  // Hide the dropdown menu
+  hide = () => {
+    document.getElementById("dc").style.display = "none";
+  };
+
+  // Show the dropdown menu
+  show = () => {
+    document.getElementById("dc").style.display = "block";
+  };
+
+  // Open / Close dropdown menu
+  handleClick = () => {
+    if (!this.state.isVisible) {
+      this.setState({ isVisible: true });
+      this.show();
+    } else {
+      this.setState({ isVisible: false });
+      this.hide();
+    }
+  };
 
   render() {
     return (
       <div>
-        <div class="dropdown">
-          <span class="">Change search radius</span>
-          <div class="dropdown-content">
+        Search radius
+        <div id="dd" class="dropdown" onClick={this.handleClick}>
+          <span class="">
+            &nbsp;<u>{this.props.selectedRadius}</u>
+          </span>
+          <div id="dc" class="dropdown-content">
             <a
               class="pointer"
               data-radius="500"
@@ -44,6 +69,7 @@ class Dropdown extends Component {
               5000
             </a>
           </div>
+          <span style={{ fontSize: "0.8em" }}>&nbsp;m</span>
         </div>
       </div>
     );
