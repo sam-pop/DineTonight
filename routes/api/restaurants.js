@@ -92,7 +92,6 @@ router.post("/", (req, res) => {
       //After both requests are done
       if (zomato && yelp) {
         console.log("Both API calls successfuly resolved!");
-        console.log(yelpBODY);
         res.json(shuffle([...zomatoBODY, ...yelpBODY]));
       } else {
         // API error handling

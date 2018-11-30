@@ -11,7 +11,7 @@ class ResultContainer extends Component {
   }
 
   componentWillMount() {
-    const tempRes = this.randResult(this.state.results);
+    const tempRes = this.randItem(this.state.results);
     this.setState({ tempRes });
   }
 
@@ -19,13 +19,15 @@ class ResultContainer extends Component {
     this.setState({ results: nextProps.results });
   }
 
-  randResult = arr => {
+  // Returns a random item from the passed array
+  randItem = arr => {
     const randInd = Math.floor(arr.length * Math.random());
     return arr[randInd];
   };
 
+  // Returns a random result from the results array
   handleClick = () => {
-    const tempRes = this.randResult(this.state.results);
+    const tempRes = this.randItem(this.state.results);
     this.setState({ tempRes });
   };
 

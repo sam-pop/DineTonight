@@ -16,13 +16,7 @@ a {
   font-family: sans-serif;
   padding-top: 1vh;
 }
-/* .navbar-item:hover {
-  background-color: #cac4ce !important;
-  color: #242038 !important;
-  border-radius: 7px 0px 0 0;
-} */
 
-/* nav logo */
 .navbar-brand {
   font-size: 2.5vh;
   cursor: pointer;

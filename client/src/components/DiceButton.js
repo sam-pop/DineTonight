@@ -12,6 +12,7 @@ class DiceButton extends Component {
     this.setState({ firstRun: nextProps.firstRun });
   }
 
+  // Randomize dice button icon
   randDiceIcon = () => {
     const baseName = "fas fa-dice";
     const diceArray = ["-one", "-two", "-three", "-four", "-five", "-six"];

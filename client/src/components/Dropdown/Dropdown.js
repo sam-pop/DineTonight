@@ -10,12 +10,12 @@ class Dropdown extends Component {
     };
   }
 
-  // Hide the dropdown menu
+  // Hides the dropdown menu
   hide = () => {
     document.getElementById("dc").style.display = "none";
   };
 
-  // Show the dropdown menu
+  // Shows the dropdown menu
   show = () => {
     document.getElementById("dc").style.display = "block";
   };
@@ -40,34 +40,34 @@ class Dropdown extends Component {
             &nbsp;<u>{this.props.selectedRadius}</u>
           </span>
           <div id="dc" class="dropdown-content">
-            <a
+            <span
               class="pointer"
               data-radius="500"
-              onClick={this.props.changeRadius.bind(this)}
+              onClick={this.props.updateRadius.bind(this)}
             >
               500
-            </a>
-            <a
+            </span>
+            <span
               class="pointer"
               data-radius="1000"
-              onClick={this.props.changeRadius.bind(this)}
+              onClick={this.props.updateRadius.bind(this)}
             >
               1000
-            </a>
-            <a
+            </span>
+            <span
               class="pointer"
               data-radius="2000"
-              onClick={this.props.changeRadius.bind(this)}
+              onClick={this.props.updateRadius.bind(this)}
             >
               2000
-            </a>
-            <a
+            </span>
+            <span
               class="pointer"
               data-radius="5000"
-              onClick={this.props.changeRadius.bind(this)}
+              onClick={this.props.updateRadius.bind(this)}
             >
               5000
-            </a>
+            </span>
           </div>
           <span style={{ fontSize: "0.8em" }}>&nbsp;m</span>
         </div>

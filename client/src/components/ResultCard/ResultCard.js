@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import "./ResultCard.css";
 
-class ResultCard extends React.Component {
+class ResultCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -168,7 +168,9 @@ class ResultCard extends React.Component {
             </span>
           </p>
           <p className="card-footer-item">
-            <span role="img">⭐</span>
+            <span role="img" aria-label="star">
+              ⭐
+            </span>
           </p>
           <p className="card-footer-item">
             <span>Add Note </span>

@@ -7,7 +7,7 @@ const responsiveSubtitleText = {
       Don't "roll the dice" on a restuarant... <br /> let us do it for you!
     </Fragment>
   ),
-  largeScreen: `Don\'t "roll the dice" on a restuarant... let us do it for you!`
+  largeScreen: `Don't "roll the dice" on a restuarant... let us do it for you!`
 };
 
 const responsiveSubtitle = () => {
