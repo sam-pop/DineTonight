@@ -9,12 +9,16 @@ const NavBar = () => (
   <div>
     <nav className="navbar">
       <div className="navbar-brand">
-        <a className="navbar-item" onClick={handleBrandClick}>
-          Dine🥂Tonight!{" "}
+        <span className="navbar-item" onClick={handleBrandClick}>
+          Dine
+          <span role="img" aria-label="cheers">
+            🥂
+          </span>
+          Tonight!{" "}
           <span style={{ fontSize: "1.5vh", verticalAlign: "middle" }}>
             &nbsp;{"{Beta}"}
           </span>
-        </a>
+        </span>
         {/* <span
               style={{
                 float: "right",

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import ResultCard from "./ResultCard";
 import DiceButton from "./DiceButton";
 
-class ResultContainer extends React.Component {
+class ResultContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class ResultContainer extends React.Component {
   }
 
   componentWillMount() {
-    const tempRes = this.randResult(this.state.results);
+    const tempRes = this.randItem(this.state.results);
     this.setState({ tempRes });
   }
 
@@ -19,20 +19,24 @@ class ResultContainer extends React.Component {
     this.setState({ results: nextProps.results });
   }
 
-  randResult = arr => {
+  // Returns a random item from the passed array
+  randItem = arr => {
     const randInd = Math.floor(arr.length * Math.random());
     return arr[randInd];
   };
 
+  // Returns a random result from the results array
   handleClick = () => {
-    const tempRes = this.randResult(this.state.results);
+    const tempRes = this.randItem(this.state.results);
     this.setState({ tempRes });
   };
 
   render() {
     return (
       <div className="animated fadeInDown">
-        <ResultCard currentResult={this.state.tempRes} />
+        <div style={{ marginBottom: "10%" }}>
+          <ResultCard currentResult={this.state.tempRes} />
+        </div>
         <div className="has-text-centered animated fadeIn">
           <span onClick={this.handleClick}>
             <DiceButton firstRun={false} />

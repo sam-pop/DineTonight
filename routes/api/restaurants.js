@@ -3,21 +3,21 @@ const resturantsController = require("../../controllers/resturantsController");
 const request = require("request-promise-native");
 
 // Matches with "/api/restaurants"
-router.route("/").post((req, res) => {
-  const searchRadius = 1000;
+router.post("/", (req, res) => {
   let zomatoBODY;
   let yelpBODY;
   // Current location is passed through the req
   if (req.body) {
     //Parsing coordinates
-    let lat = parseFloat(req.body.lat);
-    let lon = parseFloat(req.body.lon);
+    let searchRadius = parseInt(req.body.radius);
+    let lat = parseFloat(req.body.location.lat);
+    let lon = parseFloat(req.body.location.lon);
 
     //Using async-await and promises to handle multi-data fetching from remote servers
     async function getRemoteData() {
       // Construct API uris
       const zomatoURL = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lon}`;
-      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=${searchRadius}&sort_by=rating&limit=50`;
+      const yelpURL = ` https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${lon}&open_now=true&radius=${searchRadius}&sort_by=best_match&limit=50`;
 
       //API call to Zomato
       let zomato = await request({
@@ -64,7 +64,7 @@ router.route("/").post((req, res) => {
         .then(yelpRes => {
           //Extracting relevant properties from the API response
           yelpBODY = yelpRes.businesses
-            .filter(Obj => Obj.review_count >= 180 && Obj.rating >= 4)
+            .filter(Obj => Obj.review_count >= 150 && Obj.rating >= 4)
             .map(Obj => {
               let thisCuisines = Obj.categories.map(Cat => {
                 return Cat.title;
@@ -82,7 +82,8 @@ router.route("/").post((req, res) => {
                 link: Obj.url,
                 image: Obj.image_url,
                 phone: Obj.display_phone,
-                phone_link: `tel:${Obj.phone}`
+                phone_link: `tel:${Obj.phone}`,
+                distance: Obj.distance
               };
             });
           return true;

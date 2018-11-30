@@ -30,12 +30,13 @@ h2 {
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
+  max-height: 100vh;
   /* background-color: #f7ece1; */
   color: #242038;
 }
 
 .randomBtn {
-  margin-top: 7%;
+  /* margin-top: 7%; */
   background-color: #242038;
   color: #cac4ce;
   width: 20%;
@@ -51,7 +52,7 @@ h2 {
 
 @media only screen and (max-width: 768px) {
   .randomBtn {
-    margin-top: 20%;
+    /* margin-top: 15%; */
     background-color: #242038;
     color: #cac4ce;
     width: 50%;

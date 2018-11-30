@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
+import Dropdown from "./components/Dropdown";
 import API from "./utils/API";
 import "./App.css";
 
@@ -12,6 +13,7 @@ class App extends Component {
     firstRun: true,
     loggedIn: null,
     currentLocation: null,
+    selectedRadius: 1000,
     currentContainer: <WelcomeContainer />,
     results: null,
     message: "Roll the dice to begin"
@@ -21,6 +23,7 @@ class App extends Component {
     this.getGeolocation();
   }
 
+  // Use navigator's geolocation to get the current position of the user
   getGeolocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -36,14 +39,27 @@ class App extends Component {
     }
   };
 
+  // Change the first-run state
   changeFirstRun = () => {
     this.setState({ firstRun: false });
   };
 
+  // Updates the current search radius
+  updateRadius = event => {
+    this.setState({
+      selectedRadius: parseInt(event.currentTarget.dataset.radius)
+    });
+  };
+
+  // Return the results from the API and display them
   handleClick = () => {
     if (this.state.currentLocation) {
       this.setState({ message: "Calculating best-matches" });
-      API.getResults(this.state.currentLocation)
+      // PostRequest
+      API.getResults({
+        location: this.state.currentLocation,
+        radius: this.state.selectedRadius
+      })
         .then(res =>
           res.data.error
             ? this.setState({ message: res.data.error })
@@ -73,8 +89,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/* --- Navigation --- */}
         <NavBar />
+        {/* --- Current container --- */}
         {this.state.currentContainer}
+        {/* --- Dropdown menu --- */}
+        <div
+          className="has-text-centered"
+          style={{ paddingTop: "7%", paddingBottom: "1%" }}
+        >
+          {this.state.firstRun ? (
+            <Dropdown
+              updateRadius={this.updateRadius}
+              selectedRadius={this.state.selectedRadius}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        {/* --- DiceButton --- */}
         <div className="has-text-centered animated pulse">
           <span onClick={this.handleClick}>
             {this.state.firstRun ? (
@@ -84,6 +117,7 @@ class App extends Component {
             )}
           </span>
         </div>
+        {/* --- Message text --- */}
         <div
           className="animated pulse"
           style={{
