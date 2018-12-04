@@ -145,7 +145,7 @@ class ResultCard extends Component {
             <br />
           </p>
         </div>
-        <footer className="card-footer">
+        <div className="card-footer">
           <p className="card-footer-item">
             <span>
               {thisResult.menu ? (
@@ -175,7 +175,7 @@ class ResultCard extends Component {
           <p className="card-footer-item">
             <span>Add Note </span>
           </p>
-        </footer>
+        </div>
       </div>
     );
   }

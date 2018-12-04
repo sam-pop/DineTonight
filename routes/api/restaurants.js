@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const resturantsController = require("../../controllers/resturantsController");
 const request = require("request-promise-native");
 
 // Matches with "/api/restaurants"
