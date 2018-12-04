@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ResultCard from "./ResultCard";
 import DiceButton from "./DiceButton";
+import { zomatoLogo, yelpLogo, googleMapsLogo } from "../images";
 
 class ResultContainer extends Component {
   constructor(props) {
