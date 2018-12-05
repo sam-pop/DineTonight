@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Footer from "./Footer";
 
 const responsiveSubtitleText = {
   smallScreen: (
@@ -20,7 +19,7 @@ const styles = {
 };
 
 const WelcomeContainer = props => (
-  <div>
+  <div className="welcomeContainer">
     <h1>Looking for a place to eat?</h1>
     <h2>{responsiveSubtitle()}</h2>
     <section className="container" style={styles}>
@@ -35,7 +34,6 @@ const WelcomeContainer = props => (
         time to relax.
       </div>
     </section>
-    <Footer />
   </div>
 );
 

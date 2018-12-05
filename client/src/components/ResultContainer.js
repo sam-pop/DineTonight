@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ResultCard from "./ResultCard";
 import DiceButton from "./DiceButton";
-import { zomatoLogo, yelpLogo, googleMapsLogo } from "../images";
 
 class ResultContainer extends Component {
   constructor(props) {
@@ -34,7 +33,7 @@ class ResultContainer extends Component {
 
   render() {
     return (
-      <div className="animated fadeInDown">
+      <div className="resultContainer animated fadeInDown">
         <div style={{ marginBottom: "5vh" }}>
           <ResultCard currentResult={this.state.tempRes} />
         </div>
