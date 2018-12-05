@@ -1,4 +1,5 @@
 import React from "react";
+import { zomatoLogo, yeloLogo, googleMapsLogo } from "../images";
 
 const styles = {
   gh_icon: {
@@ -7,16 +8,23 @@ const styles = {
   }
 };
 
-const Footer = () => (
+const Footer = props => (
   <footer>
     <div className="has-text-centered">
-      <a
-        href="https://github.com/sam-pop/DnTn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i className="fab fa-github" style={styles.gh_icon} />
-      </a>
+      {props.firstRun ? (
+        <a
+          href="https://github.com/sam-pop/DnTn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fab fa-github" style={styles.gh_icon} />
+        </a>
+      ) : (
+        <span>
+          Powered by:
+          <img src={zomatoLogo} />
+        </span>
+      )}
     </div>
   </footer>
 );

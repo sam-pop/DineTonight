@@ -33,7 +33,7 @@ class ResultContainer extends Component {
 
   render() {
     return (
-      <div className="animated fadeInDown">
+      <div className="resultContainer animated fadeInDown">
         <div style={{ marginBottom: "5vh" }}>
           <ResultCard currentResult={this.state.tempRes} />
         </div>

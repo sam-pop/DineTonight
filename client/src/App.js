@@ -5,6 +5,7 @@ import DiceButton from "./components/DiceButton";
 import WelcomeContainer from "./components/WelcomeContainer";
 import ResultContainer from "./components/ResultContainer";
 import Dropdown from "./components/Dropdown";
+import Footer from "./components/Footer";
 import API from "./utils/API";
 import "./App.css";
 
@@ -96,7 +97,7 @@ class App extends Component {
         {/* --- Dropdown menu --- */}
         <div
           className="has-text-centered"
-          style={{ paddingTop: "7%", paddingBottom: "1%" }}
+          style={{ marginTop: "1%", marginBottom: "1%" }}
         >
           {this.state.firstRun ? (
             <Dropdown
@@ -128,6 +129,8 @@ class App extends Component {
         >
           {this.state.message}
         </div>
+        {/* --- Footer --- */}
+        <Footer firstRun={this.state.firstRun} />
       </div>
     );
   }
