@@ -1,12 +1,15 @@
 import React from "react";
-import { zomatoLogo, yeloLogo, googleMapsLogo } from "../images";
+import { zomatoLogo, yelpLogo, googleMapsLogo } from "../images";
 
 const styles = {
   gh_icon: {
-    fontSize: "1.5rem",
-    color: "#242038"
+    fontSize: "1.8rem",
+    color: "#242038",
+    padding: "5px"
   }
 };
+
+const logoSize = "35px";
 
 const Footer = props => (
   <footer>
@@ -22,7 +25,28 @@ const Footer = props => (
       ) : (
         <span>
           Powered by:
-          <img src={zomatoLogo} />
+          <br />
+          <img
+            title="Zomato"
+            src={zomatoLogo}
+            width={logoSize}
+            style={{ padding: "5px" }}
+            alt="zomato logo"
+          />
+          <img
+            title="Yelp!"
+            src={yelpLogo}
+            width={logoSize}
+            style={{ padding: "5px" }}
+            alt="yelp logo"
+          />
+          <img
+            title="Google Maps"
+            src={googleMapsLogo}
+            width={logoSize}
+            style={{ padding: "5px" }}
+            alt="google maps logo"
+          />
         </span>
       )}
     </div>

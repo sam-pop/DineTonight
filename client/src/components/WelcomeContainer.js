@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Footer from "./Footer";
 
 const responsiveSubtitleText = {
   smallScreen: (
@@ -35,7 +34,6 @@ const WelcomeContainer = props => (
         time to relax.
       </div>
     </section>
-    {/* <Footer /> */}
   </div>
 );
 
