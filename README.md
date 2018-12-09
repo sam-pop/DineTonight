@@ -23,3 +23,17 @@ The resultant phone number is clickable - you can "click to call" on the number 
 ## Demo
 
 Deployed to Heroku: [https://dntn.herokuapp.com/](https://dntn.herokuapp.com/)
+
+### Note
+
+This app is still work-in-progress [WIP] and therefor does not have the full intended functionality (yet).
+
+Currently in development:
+
+- [x] User Auth (passport)
+- [x] Database integration
+
+Future development:
+
+- [ ] Additional data sources
+- [ ] Statistics
