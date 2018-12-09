@@ -24,6 +24,10 @@ The resultant phone number is clickable - you can "click to call" on the number 
 
 Deployed to Heroku: [https://dntn.herokuapp.com/](https://dntn.herokuapp.com/)
 
+[![Screenshot Dine-Tonight](https://i.postimg.cc/3RJjVW9P/Screenshot-2018-12-09-Dine-Tonight.png)](https://dntn.herokuapp.com/)
+
+[![iPhone-X Screenshot ](https://i.postimg.cc/d3gxJGx7/iphone-x-screenshot.png)](https://dntn.herokuapp.com/)
+
 ### Note
 
 This app is still work-in-progress [WIP] and therefor does not have the full intended functionality (yet).
