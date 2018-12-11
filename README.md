@@ -24,7 +24,7 @@ The resultant phone number is clickable - you can "click to call" on the number 
 
 Deployed to Heroku: [https://dntn.herokuapp.com/](https://dntn.herokuapp.com/)
 
-[![Screenshot Dine-Tonight](https://i.postimg.cc/3RJjVW9P/Screenshot-2018-12-09-Dine-Tonight.png)](https://dntn.herokuapp.com/)
+[![Screenshot Dine-Tonight](https://i.postimg.cc/y6Zhvy5R/ezgif-com-gif-maker-1.gif)](https://dntn.herokuapp.com/)
 
 [![iPhone-X Screenshot](https://i.postimg.cc/4xx61QZz/iphonexspacegrey-portrait.png)](https://dntn.herokuapp.com/)
 
