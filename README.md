@@ -22,7 +22,7 @@ The resultant phone number is clickable - you can "click to call" on the number 
 
 ## Demo
 
-Deployed to Heroku: [https://dntn.herokuapp.com/](https://dntn.herokuapp.com/)
+Live demo (deployed to Heroku): [https://dntn.herokuapp.com/](https://dntn.herokuapp.com/)
 
 [![Screenshot Dine-Tonight](https://i.postimg.cc/y6Zhvy5R/ezgif-com-gif-maker-1.gif)](https://dntn.herokuapp.com/)
 
