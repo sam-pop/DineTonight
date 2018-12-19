@@ -9,11 +9,7 @@ const NavBar = () => (
   <div>
     <nav className="navbar">
       <div className="navbar-brand">
-        <span
-          className="navbar-item"
-          onClick={handleBrandClick}
-          style={{ marginBottom: "2px" }}
-        >
+        <span className="navbar-item" onClick={handleBrandClick}>
           Dine
           <span role="img" aria-label="cheers">
             🥂
