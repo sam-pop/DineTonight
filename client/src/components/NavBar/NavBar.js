@@ -1,5 +1,6 @@
 import React from "react";
 import "./NavBar.css";
+import LoginModal from "../LoginModal";
 
 const handleBrandClick = () => {
   window.location.reload();
@@ -27,10 +28,7 @@ const NavBar = () => (
             fontSize: "2.3vh"
           }}
         >
-          <a className="navbar-item">
-            <i class="fas fa-sign-in-alt" />
-            &nbsp;Login
-          </a>
+          <LoginModal />
         </span>
       </div>
     </nav>
