@@ -1,6 +1,6 @@
 # DineTonight
 
-> One-click random restaurant suggestion for the not-picky eater :)
+> One-click for a (highly rated) random restaurant near you for the not-picky eater :)
 
 Since my wife can never decide where she wants to go out to eat - I had to create an elegent solution we can both agree on, so...
 
